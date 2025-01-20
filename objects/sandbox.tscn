@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://vs78q3v3ddl5"]
+
+[ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
+size = Vector2(1173, 57)
+
+[node name="sandbox" type="Node2D"]
+
+[node name="box" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="box"]
+offset_top = 576.0
+offset_right = 1136.0
+offset_bottom = 632.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="box"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box/StaticBody2D"]
+position = Vector2(581.5, 604.5)
+shape = SubResource("RectangleShape2D_f2nrx")
+
+[node name="bubble" parent="." instance=ExtResource("1_0m1l4")]
+position = Vector2(584, 80)

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://53cd60akj2u0"]
+
+[ext_resource type="Texture2D" uid="uid://c2krm0eun6exj" path="res://assets/bubble-prototype.png" id="1_mdrx0"]
+[ext_resource type="Script" path="res://objects/bubble.gd" id="1_xtskb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cju41"]
+radius = 64.0
+
+[sub_resource type="Curve" id="Curve_wj4yo"]
+max_value = 20.0
+_data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.999296), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_p3aji"]
+colors = PackedColorArray(0.603922, 1, 1, 1, 0.80408, 1, 0.470679, 1)
+
+[sub_resource type="Curve" id="Curve_2sq8o"]
+min_value = -1.0
+_data = [Vector2(0.00190476, 0.194933), 0.0, 0.0, 0, 0, Vector2(0.992381, -0.134412), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="bubble" type="CharacterBody2D"]
+script = ExtResource("1_xtskb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mdrx0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cju41")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 64)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.87
+direction = Vector2(0, 1)
+spread = 93.97
+gravity = Vector2(0, 0)
+initial_velocity_max = 613.61
+damping_min = 500.0
+damping_max = 900.0
+scale_amount_curve = SubResource("Curve_wj4yo")
+color_initial_ramp = SubResource("Gradient_p3aji")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_2sq8o")
