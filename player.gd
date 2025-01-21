@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var blow_hbox = $BlowArea/CollisionShape2D
 
 const MAX_SPEED = 300.0
 const GROUND_ACCEL = 1500.0
@@ -9,6 +10,12 @@ const AIR_DECEL = 400.0
 const JUMP_VELOCITY = -400.0
 
 var breath = 100
+var blowing = false: #enables blowing hitbox when true
+	set(value):
+		if blowing != value:
+			blow_hbox.set_deferred("disabled", !value)
+		blowing = value
+		
 
 
 func _physics_process(delta: float) -> void:
@@ -35,11 +42,12 @@ func _physics_process(delta: float) -> void:
 		if velocity.x < 0:
 			velocity.x = min(0, velocity.x + decel*delta)
 	
-	
 	if Input.is_action_pressed("blow"): #Space key
-		breath = max(0, breath-1)
+		blowing = false
+		breath = max(0, breath-delta*60)
 	else:
-		breath = min(100, breath+1)
+		blowing = breath < 100
+		breath = min(100, breath+delta*60)
 	
 	$Label.text = str(breath) + "%"
 

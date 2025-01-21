@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://5hhqv1ty5cr2"]
+[gd_scene load_steps=6 format=3 uid="uid://5hhqv1ty5cr2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_1uga2"]
 [ext_resource type="Texture2D" uid="uid://d5gw5bael405" path="res://icon.svg" id="1_nn3tg"]
@@ -15,6 +15,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_beq50"]
+size = Vector2(20, 239)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1uga2")
@@ -41,3 +44,10 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 0
 text = "100%"
+
+[node name="BlowArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlowArea"]
+position = Vector2(0, -109.5)
+shape = SubResource("RectangleShape2D_beq50")
+disabled = true
