@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://player.gd" id="1_1uga2"]
 [ext_resource type="Texture2D" uid="uid://d5gw5bael405" path="res://icon.svg" id="1_nn3tg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0w82"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_y1w2h"]
 animations = [{
 "frames": [{
@@ -14,18 +16,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0w82"]
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1uga2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_y1w2h")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
-shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7

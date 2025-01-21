@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 
 const SPEED = 300.0
@@ -21,15 +21,5 @@ func hit_floor():
 	pass
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += fall_speed * delta
-	else:
-		print("hit")
-		print(prev_velocity)
-		hit_floor()
-		velocity.y = -prev_velocity
-		
-	prev_velocity = velocity.y # velocity before landing on floor
-	move_and_slide()
+	pass
 	

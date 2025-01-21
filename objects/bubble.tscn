@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://53cd60akj2u0"]
+[gd_scene load_steps=8 format=3 uid="uid://53cd60akj2u0"]
 
 [ext_resource type="Texture2D" uid="uid://c2krm0eun6exj" path="res://assets/bubble-prototype.png" id="1_mdrx0"]
 [ext_resource type="Script" path="res://objects/bubble.gd" id="1_xtskb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_spq51"]
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cju41"]
 radius = 64.0
@@ -19,7 +22,13 @@ min_value = -1.0
 _data = [Vector2(0.00190476, 0.194933), 0.0, 0.0, 0, 0, Vector2(0.992381, -0.134412), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="bubble" type="CharacterBody2D"]
+[node name="bubble" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_spq51")
+gravity_scale = 0.2
+linear_damp_mode = 1
+angular_damp_mode = 1
 script = ExtResource("1_xtskb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
