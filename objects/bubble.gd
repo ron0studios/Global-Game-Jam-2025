@@ -7,7 +7,6 @@ var fall_speed = 150
 var prev_velocity
 signal hit
 
-
 func hit_floor():
 	var wobble = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
 	#$Sprite2D.scale = Vector2(1.2,1.2)
@@ -23,3 +22,8 @@ func hit_floor():
 func _physics_process(delta: float) -> void:
 	pass
 	
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.name == "StaticBody2D":
+		hit_floor()
