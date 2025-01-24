@@ -8,6 +8,7 @@ const MAX_SPD = 200
 const GRAV = 1000
 const BUOYANCY = 1500
 const SHOOTUP_BUOYANCY = 2000
+const DEPTH = 150
 var fall_factor = 1
 var force
 
@@ -28,24 +29,17 @@ func _physics_process(delta: float) -> void:
 		states.FLOAT:
 			position.y = Global.water_level
 			velocity.y = 0
-			var direction := Input.get_axis("ui_left", "ui_right")
-			if direction:
-				velocity.x = clamp(velocity.x + direction * ACCEL * delta, -MAX_SPD, MAX_SPD)
-			else:
-				if velocity.x > 0:
-					velocity.x = max(0, velocity.x - DECEL*delta)
-				if velocity.x < 0:
-					velocity.x = min(0, velocity.x + DECEL*delta)
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("ui_down"):
 				state = states.DESCEND
 		states.DESCEND:
-			velocity.y = (Global.water_level+200-position.y)
-			if Input.is_action_just_released("jump"):
+			velocity.y = (Global.water_level+DEPTH-position.y)
+			if Input.is_action_just_released("ui_down"):
 				state = states.JUMP
 				velocity.y = 0
 		states.JUMP:
 			if position.y > Global.water_level:
 				if velocity.y > 0:
+					velocity.y*=0.5
 					state = states.UNDERWATER
 				else:
 					velocity.y -= SHOOTUP_BUOYANCY * delta
@@ -60,7 +54,14 @@ func _physics_process(delta: float) -> void:
 				state = states.FLOAT
 				position.y = Global.water_level
 				velocity.y = 0
-	
+	var direction := Input.get_axis("ui_left", "ui_right")
+	if direction:
+		velocity.x = clamp(velocity.x + direction * ACCEL * delta, -MAX_SPD, MAX_SPD)
+	else:
+		if velocity.x > 0:
+			velocity.x = max(0, velocity.x - DECEL*delta)
+		if velocity.x < 0:
+			velocity.x = min(0, velocity.x + DECEL*delta)
 	
 	handle_blowing(delta)
 
