@@ -25,8 +25,6 @@ var blowing = false: #enables blowing hitbox when true
 
 
 func _physics_process(delta: float) -> void:
-	var accel = GROUND_ACCEL
-	var decel = GROUND_DECEL
 	match state:
 		states.ONLEVEL:
 			pass
@@ -35,51 +33,23 @@ func _physics_process(delta: float) -> void:
 		states.UNDERWATER:
 			pass
 	
-	# Add the gravity.
-	if not is_on_floor():
-		accel = AIR_ACCEL
-		decel = AIR_DECEL
-		velocity += get_gravity() * delta * fall_factor
-	else:
-		fall_factor = 1
+	
 	handle_blowing(delta)
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
-	if Input.is_action_just_released("jump") and not is_on_floor():
-		fall_factor = FALL_MULTIPLIER
-		
 	move_and_slide()
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = clamp(velocity.x + direction * accel * delta, -MAX_SPEED, MAX_SPEED)
-	else:
-		if velocity.x > 0:
-			velocity.x = max(0, velocity.x - decel*delta)
-		if velocity.x < 0:
-			velocity.x = min(0, velocity.x + decel*delta)
-	
-	
+
+
 func handle_blowing(delta):
 	if Input.is_action_just_pressed("blow"):
 		blowing = true
 		$Breathtimer.start()
 		
-		
 	if Input.is_action_just_released("blow"):
 		blowing = false
 		$BlowArea/blowparticle.emitting = true
 		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
-		
-		
-		
 
-	
 	if Input.is_action_pressed("blow"): #Space key
 		blowing = false
 		breath = max(0, breath-delta*60)
