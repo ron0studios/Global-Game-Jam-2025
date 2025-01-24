@@ -38,7 +38,7 @@ position = Vector2(581.5, 604.5)
 shape = SubResource("RectangleShape2D_f2nrx")
 
 [node name="bubble" parent="." instance=ExtResource("1_0m1l4")]
-position = Vector2(536, -104)
+position = Vector2(456, 128)
 
 [node name="Player" parent="." instance=ExtResource("2_164q8")]
 
