@@ -9,6 +9,7 @@ size = Vector2(1173, 57)
 [node name="sandbox" type="Node2D"]
 
 [node name="box" type="Node2D" parent="."]
+position = Vector2(-224, -270)
 
 [node name="ColorRect" type="ColorRect" parent="box"]
 offset_top = 576.0
@@ -22,6 +23,7 @@ position = Vector2(581.5, 604.5)
 shape = SubResource("RectangleShape2D_f2nrx")
 
 [node name="bubble" parent="." instance=ExtResource("1_0m1l4")]
-position = Vector2(584, 80)
+position = Vector2(360, 69)
 
 [node name="Player" parent="." instance=ExtResource("2_164q8")]
+position = Vector2(176, 266)
