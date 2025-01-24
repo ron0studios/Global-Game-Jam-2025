@@ -5,8 +5,8 @@ extends CharacterBody2D
 const ACCEL = 1000
 const DECEL = 300
 const MAX_SPD = 200
-const GRAV = 400
-const BUOYANCY = 500
+const GRAV = 1000
+const BUOYANCY = 1500
 var fall_factor = 1
 var force
 
@@ -37,20 +37,28 @@ func _physics_process(delta: float) -> void:
 					velocity.x = min(0, velocity.x + DECEL*delta)
 			if Input.is_action_just_pressed("jump"):
 				state = states.OVERWATER
-				velocity.y = -200
+				velocity.y = -400
+				position.y -= 10
 		states.OVERWATER:
-			velocity.y += GRAV * delta
-			if position.y < Global.water_level:
+			print("HUH")
+			if -50 < velocity.y and velocity.y < 50:
+				velocity.y += GRAV/2 * delta
+			else:
+				velocity.y += GRAV * delta
+			if position.y > Global.water_level:
 				state = states.UNDERWATER
 		states.UNDERWATER:
-			velocity.y += BUOYANCY * delta
-			if position.y > Global.water_level:
+			velocity.y -= BUOYANCY * delta
+			if position.y + velocity.y*delta < Global.water_level:
 				state = states.ONLEVEL
+				position.y = Global.water_level
+				velocity.y = 0
 	
 	
 	handle_blowing(delta)
 
 	move_and_slide()
+	$Label.text = states.keys()[state]
 
 
 
