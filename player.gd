@@ -59,6 +59,9 @@ func _physics_process(delta: float) -> void:
 		blowing = breath < 100
 		breath = min(100, breath+delta*60)
 	
+	if Input.is_action_just_released("blow"):
+		$BlowArea/blowparticle.emitting = true
+	
 	$Label.text = str(breath) + "%"
 
 	move_and_slide()
