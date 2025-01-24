@@ -12,5 +12,5 @@ position = Vector2(0, 64)
 gizmo_extents = 32.0
 
 [node name="BottomRight" type="Marker2D" parent="."]
-position = Vector2(480, 272)
+position = Vector2(640, 272)
 gizmo_extents = 32.0
