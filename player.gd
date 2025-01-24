@@ -2,18 +2,16 @@ extends CharacterBody2D
 
 @onready var blow_hbox = $BlowArea/CollisionShape2D
 
-const MAX_SPEED = 300.0
-const GROUND_ACCEL = 1500000.0
-const GROUND_DECEL = 2000000.0
-const AIR_ACCEL = GROUND_ACCEL*0.7
-const AIR_DECEL = GROUND_ACCEL*0.7
-const JUMP_VELOCITY = -600.0
-const FALL_MULTIPLIER = 1.5 # how much faster to fall when jump key released
+const ACCEL = 1000
+const DECEL = 300
+const MAX_SPD = 200
+const GRAV = 400
+const BUOYANCY = 500
 var fall_factor = 1
 var force
 
 var state = states.ONLEVEL
-enum states {OVERWATER, UNDERWATER, ONLEVEL}
+enum states {OVERWATER, UNDERWATER, ONLEVEL, TURNAROUND}
 
 var breath = 100
 var blowing = false: #enables blowing hitbox when true
@@ -27,11 +25,27 @@ var blowing = false: #enables blowing hitbox when true
 func _physics_process(delta: float) -> void:
 	match state:
 		states.ONLEVEL:
-			pass
+			position.y = Global.water_level
+			velocity.y = 0
+			var direction := Input.get_axis("ui_left", "ui_right")
+			if direction:
+				velocity.x = clamp(velocity.x + direction * ACCEL * delta, -MAX_SPD, MAX_SPD)
+			else:
+				if velocity.x > 0:
+					velocity.x = max(0, velocity.x - DECEL*delta)
+				if velocity.x < 0:
+					velocity.x = min(0, velocity.x + DECEL*delta)
+			if Input.is_action_just_pressed("jump"):
+				state = states.OVERWATER
+				velocity.y = -200
 		states.OVERWATER:
-			pass
+			velocity.y += GRAV * delta
+			if position.y < Global.water_level:
+				state = states.UNDERWATER
 		states.UNDERWATER:
-			pass
+			velocity.y += BUOYANCY * delta
+			if position.y > Global.water_level:
+				state = states.ONLEVEL
 	
 	
 	handle_blowing(delta)
