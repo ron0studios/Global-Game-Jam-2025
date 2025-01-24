@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5hhqv1ty5cr2"]
+[gd_scene load_steps=17 format=3 uid="uid://5hhqv1ty5cr2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_1uga2"]
 [ext_resource type="Texture2D" uid="uid://d5gw5bael405" path="res://icon.svg" id="1_nn3tg"]
@@ -35,6 +35,14 @@ region = Rect2(0, 32, 32, 32)
 atlas = ExtResource("3_po0rm")
 region = Rect2(32, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjckk"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r41vj"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(0, 96, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_y1w2h"]
 animations = [{
 "frames": [{
@@ -59,6 +67,11 @@ animations = [{
 "name": &"idle",
 "speed": 10.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fqoq7")
@@ -71,10 +84,16 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q60ql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjckk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r41vj")
 }],
-"loop": true,
+"loop": false,
 "name": &"turn",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_beq50"]
@@ -94,8 +113,7 @@ shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1w2h")
-animation = &"turn"
-frame_progress = 0.404462
+animation = &"spin"
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7
