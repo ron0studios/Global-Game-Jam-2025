@@ -8,6 +8,12 @@ size = Vector2(1173, 57)
 
 [node name="sandbox" type="Node2D"]
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -169.0
+offset_top = 200.0
+offset_right = 967.0
+offset_bottom = 432.0
+
 [node name="box" type="Node2D" parent="."]
 position = Vector2(-169, -251)
 
