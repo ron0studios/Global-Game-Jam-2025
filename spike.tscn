@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4okuuwiv4502"]
 
-[ext_resource type="Script" path="res://spike.gd" id="1_ddh2b"]
+[ext_resource type="Script" path="res://objects/spike.gd" id="1_ddh2b"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dctlf"]
 size = Vector2(20, 20)
