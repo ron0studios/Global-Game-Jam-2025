@@ -2,18 +2,17 @@ extends CharacterBody2D
 
 @onready var blow_hbox = $BlowArea/CollisionShape2D
 
-const MAX_SPEED = 300.0
-const GROUND_ACCEL = 1500000.0
-const GROUND_DECEL = 2000000.0
-const AIR_ACCEL = GROUND_ACCEL*0.7
-const AIR_DECEL = GROUND_ACCEL*0.7
-const JUMP_VELOCITY = -600.0
-const FALL_MULTIPLIER = 1.5 # how much faster to fall when jump key released
+const ACCEL = 1000
+const DECEL = 300
+const MAX_SPD = 200
+const GRAV = 1000
+const BUOYANCY = 1500
+const SHOOTUP_BUOYANCY = 2000
 var fall_factor = 1
 var force
 
-var state = states.ONLEVEL
-enum states {OVERWATER, UNDERWATER, ONLEVEL}
+var state = states.FLOAT
+enum states {JUMP, UNDERWATER, FLOAT, TURNAROUND, DESCEND}
 
 var breath = 100
 var blowing = false: #enables blowing hitbox when true
@@ -26,17 +25,49 @@ var blowing = false: #enables blowing hitbox when true
 
 func _physics_process(delta: float) -> void:
 	match state:
-		states.ONLEVEL:
-			pass
-		states.OVERWATER:
-			pass
+		states.FLOAT:
+			position.y = Global.water_level
+			velocity.y = 0
+			var direction := Input.get_axis("ui_left", "ui_right")
+			if direction:
+				velocity.x = clamp(velocity.x + direction * ACCEL * delta, -MAX_SPD, MAX_SPD)
+			else:
+				if velocity.x > 0:
+					velocity.x = max(0, velocity.x - DECEL*delta)
+				if velocity.x < 0:
+					velocity.x = min(0, velocity.x + DECEL*delta)
+			if Input.is_action_just_pressed("jump"):
+				state = states.DESCEND
+		states.DESCEND:
+			velocity.y = (Global.water_level+200-position.y)
+			if Input.is_action_just_released("jump"):
+				state = states.JUMP
+				velocity.y = 0
+		states.JUMP:
+			print("HUH")
+			
+			if position.y > Global.water_level:
+				if velocity.y > 0:
+					state = states.UNDERWATER
+				else:
+					velocity.y -= SHOOTUP_BUOYANCY * delta
+			else:
+				if -50 < velocity.y and velocity.y < 50:
+					velocity.y += GRAV/2 * delta
+				else:
+					velocity.y += GRAV * delta
 		states.UNDERWATER:
-			pass
+			velocity.y -= BUOYANCY * delta
+			if position.y + velocity.y*delta < Global.water_level:
+				state = states.FLOAT
+				position.y = Global.water_level
+				velocity.y = 0
 	
 	
 	handle_blowing(delta)
 
 	move_and_slide()
+	$Label.text = states.keys()[state]
 
 
 
