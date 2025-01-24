@@ -44,8 +44,6 @@ func _physics_process(delta: float) -> void:
 				state = states.JUMP
 				velocity.y = 0
 		states.JUMP:
-			print("HUH")
-			
 			if position.y > Global.water_level:
 				if velocity.y > 0:
 					state = states.UNDERWATER
