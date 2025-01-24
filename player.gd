@@ -12,6 +12,8 @@ const FALL_MULTIPLIER = 1.5 # how much faster to fall when jump key released
 var fall_factor = 1
 var force
 
+var state = states.ONLEVEL
+enum states {OVERWATER, UNDERWATER, ONLEVEL}
 
 var breath = 100
 var blowing = false: #enables blowing hitbox when true
@@ -25,6 +27,13 @@ var blowing = false: #enables blowing hitbox when true
 func _physics_process(delta: float) -> void:
 	var accel = GROUND_ACCEL
 	var decel = GROUND_DECEL
+	match state:
+		states.ONLEVEL:
+			pass
+		states.OVERWATER:
+			pass
+		states.UNDERWATER:
+			pass
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -33,6 +42,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta * fall_factor
 	else:
 		fall_factor = 1
+	handle_blowing(delta)
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -41,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("jump") and not is_on_floor():
 		fall_factor = FALL_MULTIPLIER
 		
+	move_and_slide()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -54,6 +65,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = min(0, velocity.x + decel*delta)
 	
 	
+func handle_blowing(delta):
 	if Input.is_action_just_pressed("blow"):
 		blowing = true
 		$Breathtimer.start()
@@ -79,9 +91,6 @@ func _physics_process(delta: float) -> void:
 		$BlowArea/blowparticle.emitting = true
 	
 	$Label.text = str(breath) + "%"
-
-	move_and_slide()
-
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:
 	if body.name == "bubble":
