@@ -8,5 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Water.apply_force($Player.global_position, 128.0 * Vector2.DOWN, 48.0)
+	$Water.apply_force($Player.global_position, 128.0 * Vector2.DOWN, 10.0)
 	pass

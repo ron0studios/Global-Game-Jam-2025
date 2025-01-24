@@ -71,11 +71,13 @@ func _physics_process(delta: float) -> void:
 
 
 func handle_blowing(delta):
+	$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
 	if Input.is_action_just_pressed("blow"):
 		blowing = true
 		$Breathtimer.start()
 		
 	if Input.is_action_just_released("blow"):
+		print(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized())
 		blowing = false
 		$BlowArea/blowparticle.emitting = true
 		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
@@ -94,5 +96,6 @@ func handle_blowing(delta):
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:
 	if body.name == "bubble":
-		body.apply_impulse(Vector2.UP*1000*force)
+		
+		body.apply_impulse(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized()*1000*force)
 	pass # Replace with function body. 
