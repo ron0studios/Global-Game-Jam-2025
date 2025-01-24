@@ -10,6 +10,7 @@ const AIR_DECEL = GROUND_ACCEL*0.7
 const JUMP_VELOCITY = -600.0
 const FALL_MULTIPLIER = 1.5 # how much faster to fall when jump key released
 var fall_factor = 1
+var force
 
 
 var breath = 100
@@ -52,6 +53,21 @@ func _physics_process(delta: float) -> void:
 		if velocity.x < 0:
 			velocity.x = min(0, velocity.x + decel*delta)
 	
+	
+	if Input.is_action_just_pressed("blow"):
+		blowing = true
+		$Breathtimer.start()
+		
+		
+	if Input.is_action_just_released("blow"):
+		blowing = false
+		$BlowArea/blowparticle.emitting = true
+		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
+		
+		
+		
+
+	
 	if Input.is_action_pressed("blow"): #Space key
 		blowing = false
 		breath = max(0, breath-delta*60)
@@ -65,3 +81,9 @@ func _physics_process(delta: float) -> void:
 	$Label.text = str(breath) + "%"
 
 	move_and_slide()
+
+
+func _on_blow_area_body_entered(body: RigidBody2D) -> void:
+	if body.name == "bubble":
+		body.apply_impulse(Vector2.UP*1000*force)
+	pass # Replace with function body. 

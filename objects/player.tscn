@@ -72,3 +72,8 @@ initial_velocity_max = 500.0
 angular_velocity_min = -105.88
 angular_velocity_max = 116.47
 scale_amount_curve = SubResource("Curve_p0x7g")
+
+[node name="Breathtimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="BlowArea" to="." method="_on_blow_area_body_entered"]
