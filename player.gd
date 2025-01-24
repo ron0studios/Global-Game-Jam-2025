@@ -7,11 +7,12 @@ const DECEL = 300
 const MAX_SPD = 200
 const GRAV = 1000
 const BUOYANCY = 1500
+const SHOOTUP_BUOYANCY = 2000
 var fall_factor = 1
 var force
 
-var state = states.ONLEVEL
-enum states {OVERWATER, UNDERWATER, ONLEVEL, TURNAROUND}
+var state = states.FLOAT
+enum states {JUMP, UNDERWATER, FLOAT, TURNAROUND, DESCEND}
 
 var breath = 100
 var blowing = false: #enables blowing hitbox when true
@@ -24,7 +25,7 @@ var blowing = false: #enables blowing hitbox when true
 
 func _physics_process(delta: float) -> void:
 	match state:
-		states.ONLEVEL:
+		states.FLOAT:
 			position.y = Global.water_level
 			velocity.y = 0
 			var direction := Input.get_axis("ui_left", "ui_right")
@@ -36,21 +37,29 @@ func _physics_process(delta: float) -> void:
 				if velocity.x < 0:
 					velocity.x = min(0, velocity.x + DECEL*delta)
 			if Input.is_action_just_pressed("jump"):
-				state = states.OVERWATER
-				velocity.y = -400
-				position.y -= 10
-		states.OVERWATER:
+				state = states.DESCEND
+		states.DESCEND:
+			velocity.y = (Global.water_level+200-position.y)
+			if Input.is_action_just_released("jump"):
+				state = states.JUMP
+				velocity.y = 0
+		states.JUMP:
 			print("HUH")
-			if -50 < velocity.y and velocity.y < 50:
-				velocity.y += GRAV/2 * delta
-			else:
-				velocity.y += GRAV * delta
+			
 			if position.y > Global.water_level:
-				state = states.UNDERWATER
+				if velocity.y > 0:
+					state = states.UNDERWATER
+				else:
+					velocity.y -= SHOOTUP_BUOYANCY * delta
+			else:
+				if -50 < velocity.y and velocity.y < 50:
+					velocity.y += GRAV/2 * delta
+				else:
+					velocity.y += GRAV * delta
 		states.UNDERWATER:
 			velocity.y -= BUOYANCY * delta
 			if position.y + velocity.y*delta < Global.water_level:
-				state = states.ONLEVEL
+				state = states.FLOAT
 				position.y = Global.water_level
 				velocity.y = 0
 	
