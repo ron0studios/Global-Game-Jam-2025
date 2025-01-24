@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://53cd60akj2u0"]
+[gd_scene load_steps=9 format=3 uid="uid://53cd60akj2u0"]
 
 [ext_resource type="Texture2D" uid="uid://c2krm0eun6exj" path="res://assets/bubble-prototype.png" id="1_mdrx0"]
 [ext_resource type="Script" path="res://objects/bubble.gd" id="1_xtskb"]
@@ -22,9 +22,10 @@ min_value = -1.0
 _data = [Vector2(0.00190476, 0.194933), 0.0, 0.0, 0, 0, Vector2(0.992381, -0.134412), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dx0t"]
+radius = 72.0
+
 [node name="bubble" type="RigidBody2D"]
-collision_layer = 2
-collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_spq51")
 gravity_scale = 0.2
 contact_monitor = true
@@ -55,4 +56,12 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_2sq8o")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0dx0t")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

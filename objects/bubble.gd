@@ -25,5 +25,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	print(body)
 	if body.name == "StaticBody2D":
 		hit_floor()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.name == "BlowArea":
+		apply_impulse(Vector2.UP*500)
+	pass # Replace with function body.

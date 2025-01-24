@@ -18,7 +18,7 @@ var blowing = false: #enables blowing hitbox when true
 		if blowing != value:
 			blow_hbox.set_deferred("disabled", !value)
 		blowing = value
-		
+
 
 
 func _physics_process(delta: float) -> void:
