@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://5hhqv1ty5cr2"]
+[gd_scene load_steps=16 format=3 uid="uid://5hhqv1ty5cr2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_1uga2"]
 [ext_resource type="Texture2D" uid="uid://d5gw5bael405" path="res://icon.svg" id="1_nn3tg"]
@@ -99,11 +99,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_beq50"]
 size = Vector2(20, 239)
 
-[sub_resource type="Curve" id="Curve_p0x7g"]
-max_value = 10.0
-_data = [Vector2(0, 5.31572), 0.0, 22.6659, 0, 0, Vector2(1, 0), -37.9347, 0.0, 0, 0]
-point_count = 2
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1uga2")
 
@@ -138,20 +133,6 @@ collision_mask = 2
 position = Vector2(0, -109.5)
 shape = SubResource("RectangleShape2D_beq50")
 disabled = true
-
-[node name="blowparticle" type="CPUParticles2D" parent="BlowArea"]
-position = Vector2(0, -32)
-emitting = false
-one_shot = true
-explosiveness = 0.72
-direction = Vector2(0, -1)
-spread = 3.97
-gravity = Vector2(0, 500)
-initial_velocity_min = 300.0
-initial_velocity_max = 500.0
-angular_velocity_min = -105.88
-angular_velocity_max = 116.47
-scale_amount_curve = SubResource("Curve_p0x7g")
 
 [node name="Breathtimer" type="Timer" parent="."]
 one_shot = true

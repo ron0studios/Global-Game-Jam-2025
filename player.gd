@@ -78,8 +78,13 @@ func handle_blowing(delta):
 		
 	if Input.is_action_just_released("blow"):
 		print(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized())
+		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
+		blowparticle.rotation = $BlowArea.rotation
+		get_parent().add_child(blowparticle)
+		blowparticle.global_position = global_position
+		blowparticle.emitting = true
+		
 		blowing = false
-		$BlowArea/blowparticle.emitting = true
 		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
 
 	if Input.is_action_pressed("blow"): #Space key
@@ -89,8 +94,6 @@ func handle_blowing(delta):
 		blowing = breath < 100
 		breath = min(100, breath+delta*60)
 	
-	if Input.is_action_just_released("blow"):
-		$BlowArea/blowparticle.emitting = true
 	
 	$Label.text = str(breath) + "%"
 

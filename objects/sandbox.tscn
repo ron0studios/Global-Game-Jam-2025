@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=9 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="Script" path="res://objects/sandbox.gd" id="1_xq8u2"]
@@ -9,6 +9,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eus6r"]
+size = Vector2(50, 800)
 
 [node name="sandbox" type="Node2D"]
 script = ExtResource("1_xq8u2")
@@ -36,6 +39,22 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="box/StaticBody2D"]
 position = Vector2(581.5, 604.5)
 shape = SubResource("RectangleShape2D_f2nrx")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="box"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box/StaticBody2D2"]
+position = Vector2(145, 179)
+shape = SubResource("RectangleShape2D_eus6r")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="box"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box/StaticBody2D3"]
+position = Vector2(833, 179)
+shape = SubResource("RectangleShape2D_eus6r")
 
 [node name="bubble" parent="." instance=ExtResource("1_0m1l4")]
 position = Vector2(456, 128)
