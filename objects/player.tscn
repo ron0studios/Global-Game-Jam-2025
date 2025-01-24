@@ -108,7 +108,7 @@ shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1w2h")
-animation = &"spin"
+animation = &"turn"
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7
