@@ -1,12 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=6 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="PackedScene" uid="uid://5hhqv1ty5cr2" path="res://objects/player.tscn" id="2_164q8"]
+[ext_resource type="Texture2D" uid="uid://bxusrjspenlai" path="res://assets/arrow.png" id="3_nbphp"]
+[ext_resource type="Script" path="res://objects/arrow.gd" id="4_r8lw1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
 
 [node name="sandbox" type="Node2D"]
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -169.0
+offset_top = 200.0
+offset_right = 967.0
+offset_bottom = 432.0
+color = Color(0.572549, 1, 1, 1)
 
 [node name="box" type="Node2D" parent="."]
 position = Vector2(-169, -251)
@@ -23,6 +32,14 @@ position = Vector2(581.5, 604.5)
 shape = SubResource("RectangleShape2D_f2nrx")
 
 [node name="bubble" parent="." instance=ExtResource("1_0m1l4")]
-position = Vector2(434, 106)
+position = Vector2(536, -104)
 
 [node name="Player" parent="." instance=ExtResource("2_164q8")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="arrow" type="Sprite2D" parent="CanvasLayer" node_paths=PackedStringArray("bubble")]
+position = Vector2(176, 32)
+texture = ExtResource("3_nbphp")
+script = ExtResource("4_r8lw1")
+bubble = NodePath("../../bubble")

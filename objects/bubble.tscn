@@ -26,6 +26,8 @@ point_count = 2
 radius = 72.0
 
 [node name="bubble" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_spq51")
 gravity_scale = 0.2
 contact_monitor = true
@@ -64,4 +66,3 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_0dx0t")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,9 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://5hhqv1ty5cr2"]
+[gd_scene load_steps=15 format=3 uid="uid://5hhqv1ty5cr2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_1uga2"]
 [ext_resource type="Texture2D" uid="uid://d5gw5bael405" path="res://icon.svg" id="1_nn3tg"]
+[ext_resource type="Texture2D" uid="uid://ctfpdlxbeg7qt" path="res://assets/player.png" id="3_po0rm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0w82"]
+size = Vector2(5.33333, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xmbg"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bfcg"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pgtm"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqoq7"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4r16"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwr4t"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q60ql"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y1w2h"]
 animations = [{
@@ -13,6 +43,37 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xmbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bfcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pgtm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqoq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4r16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwr4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q60ql")
+}],
+"loop": true,
+"name": &"turn",
 "speed": 5.0
 }]
 
@@ -32,8 +93,9 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_y1w2h")
+animation = &"turn"
+frame_progress = 0.404462
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7
@@ -72,3 +134,8 @@ initial_velocity_max = 500.0
 angular_velocity_min = -105.88
 angular_velocity_max = 116.47
 scale_amount_curve = SubResource("Curve_p0x7g")
+
+[node name="Breathtimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="BlowArea" to="." method="_on_blow_area_body_entered"]
