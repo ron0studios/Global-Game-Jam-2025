@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://53cd60akj2u0"]
 
-[ext_resource type="Script" path="res://objects/bubble.gd" id="1_xtskb"]
+[ext_resource type="Script" path="res://objects/playerbubble.gd" id="1_xtskb"]
 [ext_resource type="Texture2D" uid="uid://dsxltbqlx8y88" path="res://assets/bubble.png" id="2_vv6od"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_spq51"]
@@ -249,7 +249,7 @@ point_count = 2
 [sub_resource type="CircleShape2D" id="CircleShape2D_0dx0t"]
 radius = 36.0
 
-[node name="bubble" type="RigidBody2D" groups=["bubble"]]
+[node name="playerbubble" type="RigidBody2D" groups=["bubble"]]
 collision_layer = 2
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_spq51")
@@ -264,7 +264,7 @@ material = SubResource("ShaderMaterial_8e2jc")
 position = Vector2(-3, 2)
 scale = Vector2(1.19, 1.19)
 sprite_frames = SubResource("SpriteFrames_gyifw")
-frame_progress = 0.537991
+frame_progress = 0.509404
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
