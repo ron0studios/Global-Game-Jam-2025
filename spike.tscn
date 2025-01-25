@@ -1,18 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4okuuwiv4502"]
+[gd_scene load_steps=7 format=3 uid="uid://b4okuuwiv4502"]
 
 [ext_resource type="Script" path="res://objects/spike.gd" id="1_ddh2b"]
-[ext_resource type="Texture2D" uid="uid://ssnybynvnavj" path="res://assets/shark.png" id="2_qs48i"]
+[ext_resource type="Texture2D" uid="uid://dmpshw7lhyskn" path="res://assets/shark-2.png" id="2_p21pp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgxn7"]
+atlas = ExtResource("2_p21pp")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbwi5"]
+atlas = ExtResource("2_p21pp")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w6xk4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgxn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbwi5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7unp"]
 
 [node name="Shark" type="Area2D"]
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_ddh2b")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.5, -0.5)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3.2, 0.4)
+rotation = -1.5708
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_qs48i")
+sprite_frames = SubResource("SpriteFrames_w6xk4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_d7unp")

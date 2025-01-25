@@ -12,8 +12,9 @@ var destination2
 signal kill
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	destination1 = Vector2(global_position.x, global_position.y-30)
+	destination1 = Vector2(position.x, position.y-70)
 	destination2 = global_position
+	$Sprite2D.play("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
