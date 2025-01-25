@@ -29,6 +29,8 @@ func _on_timer_timer_timeout() -> void:
 	tween.tween_property($Timer, "scale", _scale,0.1)
 	$Timer.text = seconds2hhmmss(clock)
 	
-	if clock < 20:
+	if clock < 10:
+		$Timer.modulate = Color.RED
+	elif clock < 20:
 		$Timer.modulate = Color.ORANGE
 	pass # Replace with function body.

@@ -121,7 +121,11 @@ func handle_animations():
 			else:
 				animation.speed_scale = 1
 		
-		
+	if animation.animation == "spin":
+		var flip = -1 if animation.flip_h else 1
+		rotation = deg_to_rad(flip*(90+clamp(velocity.y,-200,200)*0.45))
+	else:
+		rotation = 0
 
 func handle_blowing(delta):
 	#$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
