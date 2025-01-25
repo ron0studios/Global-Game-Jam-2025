@@ -15,7 +15,7 @@ var force
 @export var player_number = 1
 @onready var left_input = "p%s_left" % player_number
 @onready var right_input = "p%s_right" % player_number
-@onready var down_input = "p%s_down" % player_number
+@onready var jump_input = "p%s_jump" % player_number
 @onready var blow_input = "p%s_blow" % player_number
 
 var state = states.FLOAT
@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 			check_descend()
 		states.DESCEND:
 			velocity.y = (Global.water_level+DEPTH-position.y)
-			if Input.is_action_just_released("ui_down"):
+			if Input.is_action_just_released(jump_input):
 				state = states.JUMP
 				velocity.y = 0
 		states.JUMP:
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 				position.y = Global.water_level
 				velocity.y = 0
 			check_descend()
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis(left_input, right_input)
 	if direction:
 		velocity.x = clamp(velocity.x + direction * ACCEL * delta, -MAX_SPD, MAX_SPD)
 	else:
@@ -77,10 +77,10 @@ func _physics_process(delta: float) -> void:
 
 func check_descend():
 	#call this to give the player the option to descend
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed(jump_input):
 		state = states.DESCEND
 func handle_animations():
-	if (Input.is_action_just_pressed("left") and !$AnimatedSprite2D.flip_h) or (Input.is_action_just_pressed("right") and $AnimatedSprite2D.flip_h):
+	if (Input.is_action_just_pressed(left_input) and !$AnimatedSprite2D.flip_h) or (Input.is_action_just_pressed(right_input) and $AnimatedSprite2D.flip_h):
 		$AnimatedSprite2D.play("turn")
 	
 	if $AnimatedSprite2D.animation == "turn" and $AnimatedSprite2D.frame == 5:
@@ -89,11 +89,11 @@ func handle_animations():
 
 func handle_blowing(delta):
 	$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
-	if Input.is_action_just_pressed("blow"):
+	if Input.is_action_just_pressed(blow_input):
 		blowing = true
 		$Breathtimer.start()
 		
-	if Input.is_action_just_released("blow"):
+	if Input.is_action_just_released(blow_input):
 		print(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized())
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
 		blowparticle.rotation = $BlowArea.rotation
@@ -104,7 +104,7 @@ func handle_blowing(delta):
 		blowing = false
 		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
 
-	if Input.is_action_pressed("blow"): #Space key
+	if Input.is_action_pressed(blow_input): #Space key
 		blowing = false
 		breath = max(0, breath-delta*60)
 	else:

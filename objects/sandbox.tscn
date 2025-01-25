@@ -30,6 +30,11 @@ collision_mask = 1
 
 [node name="Player" parent="." instance=ExtResource("2_164q8")]
 
+[node name="Player2" parent="." instance=ExtResource("2_164q8")]
+modulate = Color(1, 0.68, 0.68, 1)
+position = Vector2(261, 0)
+player_number = 2
+
 [node name="Spike" parent="." instance=ExtResource("3_th80c")]
 position = Vector2(711, 606)
 
