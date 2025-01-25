@@ -101,7 +101,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_be2is")
 }],
-"loop": true,
+"loop": false,
 "name": &"blow",
 "speed": 5.0
 }, {
@@ -210,7 +210,7 @@ shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1w2h")
-animation = &"turn"
+animation = &"blow"
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7

@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 
 func check_descend():
 	#call this to give the player the option to descend
-	if Input.is_action_just_pressed(jump_input):
+	if Input.is_action_pressed(jump_input):
 		state = states.DESCEND
 
 func handle_animations():
@@ -91,12 +91,18 @@ func handle_animations():
 		if (Input.is_action_just_pressed(left_input) and !animation.flip_h) or (Input.is_action_just_pressed(right_input) and animation.flip_h):
 			animation.flip_h = !animation.flip_h
 			animation.play("turn")
+		if position.y<Global.water_level:
+			animation.play("spin")
+			if animation.flip_h:
+				animation.speed_scale = -1
+			else:
+				animation.speed_scale = 1
 		
 		
 		
 
 func handle_blowing(delta):
-	$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
+	#$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
 	if Input.is_action_just_pressed(blow_input):
 		blowing = true
 		$Breathtimer.start()
@@ -106,14 +112,17 @@ func handle_blowing(delta):
 		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
 		print(force, "use the force luke")
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
-		blowparticle.rotation = $BlowArea.rotation
-		get_parent().add_child(blowparticle)
 		blowparticle.global_position = global_position
-		blowparticle.angular_velocity_min = force
+		blowparticle.initial_velocity_min = force * 400
+		blowparticle.initial_velocity_max = force * 600
+		blowparticle.linear_accel_max = force * -450
 		blowparticle.emitting = true
+		blowparticle.position.y -= 10
+		get_parent().add_child(blowparticle)
 		
 		blowing = false
-		
+		$Breathtimer.stop()
+		animation.play("blow")
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:
 	if body.name == "bubble":
@@ -124,5 +133,6 @@ func _on_blow_area_body_entered(body: RigidBody2D) -> void:
 
 
 func _on_animation_finished() -> void:
-	if animation.animation == "turn":
-		animation.play("idle")
+	match animation.animation:
+		"turn", "blow":
+			animation.play("idle")
