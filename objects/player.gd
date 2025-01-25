@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var blow_hbox = $BlowArea/CollisionShape2D
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
 const ACCEL = 1000
 const DECEL = 300
@@ -18,10 +19,13 @@ var force
 @onready var jump_input = "p%s_jump" % player_number
 @onready var blow_input = "p%s_blow" % player_number
 
-var state = states.FLOAT
+var state = states.FLOAT:
+	set(value):
+		state = value
+		animation.animation = "idle"
 enum states {JUMP, UNDERWATER, FLOAT, TURNAROUND, DESCEND}
 
-var breath = 100
+
 var blowing = false: #enables blowing hitbox when true
 	set(value):
 		if blowing != value:
@@ -73,19 +77,23 @@ func _physics_process(delta: float) -> void:
 	handle_blowing(delta)
 
 	move_and_slide()
-	$Label.text = states.keys()[state]
+	#$Label.text = states.keys()[state]
 
 func check_descend():
 	#call this to give the player the option to descend
 	if Input.is_action_just_pressed(jump_input):
 		state = states.DESCEND
+
 func handle_animations():
-	if (Input.is_action_just_pressed(left_input) and !$AnimatedSprite2D.flip_h) or (Input.is_action_just_pressed(right_input) and $AnimatedSprite2D.flip_h):
-		$AnimatedSprite2D.play("turn")
-	
-	if $AnimatedSprite2D.animation == "turn" and $AnimatedSprite2D.frame == 5:
-		$AnimatedSprite2D.play("idle")
-		$AnimatedSprite2D.flip_h = !$AnimatedSprite2D.flip_h
+	if !$Breathtimer.is_stopped():
+		animation.play("breathe")
+	else:
+		if (Input.is_action_just_pressed(left_input) and !animation.flip_h) or (Input.is_action_just_pressed(right_input) and animation.flip_h):
+			animation.flip_h = !animation.flip_h
+			animation.play("turn")
+		
+		
+		
 
 func handle_blowing(delta):
 	$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
@@ -94,28 +102,27 @@ func handle_blowing(delta):
 		$Breathtimer.start()
 		
 	if Input.is_action_just_released(blow_input):
-		print(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized())
+		#print(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized())
+		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
+		print(force, "use the force luke")
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
 		blowparticle.rotation = $BlowArea.rotation
 		get_parent().add_child(blowparticle)
 		blowparticle.global_position = global_position
+		blowparticle.angular_velocity_min = force
 		blowparticle.emitting = true
 		
 		blowing = false
-		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
-
-	if Input.is_action_pressed(blow_input): #Space key
-		blowing = false
-		breath = max(0, breath-delta*60)
-	else:
-		blowing = breath < 100
-		breath = min(100, breath+delta*60)
-	
-	
-	$Label.text = str(breath) + "%"
+		
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:
 	if body.name == "bubble":
 		print("this worked")
 		body.apply_impulse(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized()*1000*force)
-	pass # Replace with function body. 
+
+
+
+
+func _on_animation_finished() -> void:
+	if animation.animation == "turn":
+		animation.play("idle")
