@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=10 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="Texture2D" uid="uid://knxdj4w8lonl" path="res://assets/bgs/tub bg.png" id="1_rty5p"]
@@ -8,8 +8,6 @@
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
 [ext_resource type="PackedScene" uid="uid://b7gmnc7a5ym6s" path="res://objects/hud.tscn" id="6_1r25a"]
 [ext_resource type="Texture2D" uid="uid://dipgf2jg7htrj" path="res://assets/bgs/tub fg.png" id="8_dx8lj"]
-[ext_resource type="PackedScene" uid="uid://puvjrcjss5ly" path="res://objects/playerbubble.tscn" id="9_rddhj"]
-[ext_resource type="PackedScene" uid="uid://dx1nj540m3nqu" path="res://deleteme.tscn" id="10_lhmio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -35,11 +33,20 @@ offset_bottom = 632.0
 position = Vector2(581.5, 604.5)
 shape = SubResource("RectangleShape2D_f2nrx")
 
-[node name="playerbubble" parent="." instance=ExtResource("9_rddhj")]
-position = Vector2(-104, 79)
-
 [node name="bubble" parent="." instance=ExtResource("1_0m1l4")]
 position = Vector2(46, -110)
+collision_layer = 1
+collision_mask = 1
+linear_damp = 0.0
+
+[node name="bubble2" parent="." instance=ExtResource("1_0m1l4")]
+position = Vector2(-45, 4)
+collision_layer = 1
+collision_mask = 1
+linear_damp = 0.0
+
+[node name="bubble3" parent="." instance=ExtResource("1_0m1l4")]
+position = Vector2(-37, -157)
 collision_layer = 1
 collision_mask = 1
 linear_damp = 0.0
@@ -94,6 +101,3 @@ polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, 
 position = Vector2(-7, 293)
 scale = Vector2(3, 3)
 texture = ExtResource("8_dx8lj")
-
-[node name="bubble2" parent="." instance=ExtResource("10_lhmio")]
-position = Vector2(100, 141)
