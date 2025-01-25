@@ -12,6 +12,12 @@ const DEPTH = 150
 var fall_factor = 1
 var force
 
+@export var player_number = 1
+@onready var left_input = "p%s_left" % player_number
+@onready var right_input = "p%s_right" % player_number
+@onready var down_input = "p%s_down" % player_number
+@onready var blow_input = "p%s_blow" % player_number
+
 var state = states.FLOAT
 enum states {JUMP, UNDERWATER, FLOAT, TURNAROUND, DESCEND}
 
