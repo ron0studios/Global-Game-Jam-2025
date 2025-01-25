@@ -31,13 +31,14 @@ func die():
 func _physics_process(delta: float) -> void:
 	if health < 0 and not dead:
 		die()
+		queue_free()
 	if position.y > Global.water_level:
 		health -= delta * 10
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
 	scale = Vector2.ONE * (0.5+(health/100))
-	print(animated_sprite_2d.material.shader)
+	#print(animated_sprite_2d.material.shader)
 
 
 #func _on_body_entered(body: Node) -> void:

@@ -117,7 +117,7 @@ func handle_blowing(delta):
 
 	if Input.is_action_just_released(blow_input) and breathingin:
 		#print(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized())
-		print(force)
+		#print(force)
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
 		blowparticle.global_position = global_position
 		blowparticle.initial_velocity_min = force * 400
