@@ -25,7 +25,7 @@ var state = states.FLOAT:
 	set(value):
 		state = value
 		animation.animation = "idle"
-enum states {JUMP, UNDERWATER, FLOAT, DESCEND}
+enum states {JUMP, UNDERWATER, FLOAT, DESCEND, BLOWRECOIL}
 
 func _ready() -> void:
 	animation.play("idle")
@@ -65,6 +65,12 @@ func _physics_process(delta: float) -> void:
 				position.y = Global.water_level
 				velocity.y = 0
 			check_descend()
+		states.BLOWRECOIL:
+			velocity.y -= BUOYANCY * delta
+			if velocity.y <= 0:
+				state = states.JUMP
+				velocity.y = 0
+			
 	var direction := Input.get_axis(left_input, right_input)
 	if direction:
 		velocity.x = clamp(velocity.x + direction * ACCEL * delta, -MAX_SPD, MAX_SPD)
@@ -128,9 +134,12 @@ func handle_blowing(delta):
 		get_parent().add_child(blowparticle)
 		blow_hbox.set_deferred("disabled", false)
 		
-		velocity.y += force * 50
-		if state==states.FLOAT:
-			state = states.UNDERWATER
+		if state == states.FLOAT:
+			velocity.y += force * 300
+			state = states.BLOWRECOIL
+		if state==states.JUMP:
+			velocity.y += force * 100
+		
 			
 		breathingin = false
 		breath_cooldown.start()
