@@ -30,10 +30,9 @@ enum states {JUMP, UNDERWATER, FLOAT, DESCEND}
 func _ready() -> void:
 	animation.play("idle")
 	player_bubble = load("res://objects/playerbubble.tscn").instantiate()
-	print(player_bubble, get_parent())
 	player_bubble.position = position + Vector2(0, -200)
 	get_parent().add_child(player_bubble)
-	add_child(player_bubble)
+	print(player_bubble.position)
 
 func _physics_process(delta: float) -> void:
 	match state:
