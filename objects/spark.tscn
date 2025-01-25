@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbberen3igh7"]
+[gd_scene load_steps=4 format=3 uid="uid://dbberen3igh7"]
 
 [ext_resource type="Texture2D" uid="uid://c4ta6n5uvmu1r" path="res://assets/spark.png" id="1_ofqdq"]
 [ext_resource type="Script" path="res://objects/spark.gd" id="2_me7ng"]
 
+[sub_resource type="Curve" id="Curve_7v225"]
+min_value = -1.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 0), 0.0, 0.0, 0, 0, Vector2(0.136842, -0.208791), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [node name="Spark" type="Sprite2D"]
 texture = ExtResource("1_ofqdq")
 script = ExtResource("2_me7ng")
+movecurve = SubResource("Curve_7v225")
