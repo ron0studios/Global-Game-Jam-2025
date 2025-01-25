@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b4okuuwiv4502" path="res://spike.tscn" id="3_th80c"]
 [ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
-[ext_resource type="PackedScene" uid="uid://b7gmnc7a5ym6s" path="res://objects/hud.tscn" id="6_1r25a"]
+[ext_resource type="PackedScene" path="res://objects/hud.tscn" id="6_1r25a"]
 [ext_resource type="Texture2D" uid="uid://dipgf2jg7htrj" path="res://assets/bgs/tub fg.png" id="8_dx8lj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
@@ -94,11 +94,7 @@ collision_layer = 5
 
 [node name="collision" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(-662, 300)
-polygon = PackedVector2Array(353, -130, 389, -16, 434, 100, 480, 122, 831, 124, 886, 98, 957, -125, 989, -135, 963, -135, 960, -1003, 1247, -666, 1192, 81, 1016, 274, 666, 279, 265, 221, 260, 12, 262, -1032, 314, -1260, 1112, -1173, 755, -1161, 394, -1025, 373, -580, 361, -530)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-visible = false
-polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, -254, 300, 429, 479, 423, 473, -514)
+polygon = PackedVector2Array(353, -130, 389, -16, 434, 100, 480, 122, 831, 124, 886, 98, 925, -25, 963, -130, 963, -1025, 1247, -666, 1192, 81, 1016, 274, 666, 279, 265, 221, 260, 12, 262, -1032, 314, -1260, 1112, -1173, 963, -1025, 353, -1025)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
