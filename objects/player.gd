@@ -83,7 +83,10 @@ func check_descend():
 
 func handle_animations():
 	if breathingin:
-		animation.play("breathe")
+		if force == 1:
+			animation.play("full")
+		else:
+			animation.play("breathe")
 	else:
 		if (Input.is_action_just_pressed(left_input) and !animation.flip_h) or (Input.is_action_just_pressed(right_input) and animation.flip_h):
 			animation.flip_h = !animation.flip_h
@@ -102,7 +105,7 @@ func handle_blowing(delta):
 	#$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
 	if Input.is_action_pressed(blow_input) and breath_cooldown.is_stopped():
 		if breathingin:
-			force = min(1, force+delta)
+			force = min(1, force+delta*2)
 		else:
 			force = 0
 			breathingin = true
@@ -128,7 +131,7 @@ func _on_blow_area_body_entered(body: RigidBody2D) -> void:
 	print("OH")
 	if body.is_in_group("bubble"):
 		print("this worked")
-		body.apply_impulse(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized()*1000*force)
+		body.apply_impulse(force*Vector2(2*(body.position.x-position.x),(-50000/max(10, abs(body.position.y-position.y)))))
 
 
 

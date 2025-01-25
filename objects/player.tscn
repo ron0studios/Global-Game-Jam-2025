@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://5hhqv1ty5cr2"]
+[gd_scene load_steps=30 format=3 uid="uid://5hhqv1ty5cr2"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_1uga2"]
 [ext_resource type="Texture2D" uid="uid://d5gw5bael405" path="res://icon.svg" id="1_nn3tg"]
 [ext_resource type="Texture2D" uid="uid://ctfpdlxbeg7qt" path="res://assets/player.png" id="3_po0rm"]
+[ext_resource type="Texture2D" uid="uid://bcdn0nr08p5lv" path="res://assets/doesnt do anything.png" id="4_sh4il"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0w82"]
 size = Vector2(5.33333, 6)
@@ -126,6 +127,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_sh4il")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3xmbg")
 }, {
 "duration": 1.0,
@@ -210,7 +219,7 @@ shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1w2h")
-animation = &"idle"
+animation = &"full"
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7
