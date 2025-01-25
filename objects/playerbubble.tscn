@@ -5,5 +5,13 @@
 
 [node name="playerbubble" instance=ExtResource("1_uri20")]
 
-[node name="Node" type="Node" parent="." index="4"]
+[node name="Label2" type="Label" parent="." index="4"]
+offset_left = -81.0
+offset_top = -12.0
+offset_right = 92.0
+offset_bottom = 11.0
+theme_override_constants/outline_size = 20
+text = "This is a playerbubble!"
+
+[node name="Node" type="Node" parent="." index="5"]
 script = ExtResource("1_xtskb")
