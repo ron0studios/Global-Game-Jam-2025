@@ -7,7 +7,10 @@
 [ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
 [ext_resource type="PackedScene" uid="uid://b7gmnc7a5ym6s" path="res://objects/hud.tscn" id="6_1r25a"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://dipgf2jg7htrj" path="res://assets/bgs/tub fg.png" id="8_dx8lj"]
+=======
+>>>>>>> e28a3b38ae5a155de0cff9424a96841194d399a0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -72,7 +75,7 @@ script = ExtResource("4_qjm8g")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(321, -41)
 script = ExtResource("5_0cxf5")
-targets = Array[NodePath]([NodePath("../bubble"), NodePath("../Player2"), NodePath("../Player"), NodePath("../bubble2"), NodePath("../bubble3")])
+targets = Array[NodePath]([NodePath("../Player2"), NodePath("../Player")])
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -82,11 +85,13 @@ polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, 
 [node name="CollisionPolygon2D2" type="Polygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, -254, 300, 429, 479, 423, 473, -514)
 
-[node name="HUD" parent="StaticBody2D" instance=ExtResource("6_1r25a")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+<<<<<<< HEAD
 [node name="TubFg" type="Sprite2D" parent="."]
 position = Vector2(-7, 293)
 scale = Vector2(3, 3)
 texture = ExtResource("8_dx8lj")
+=======
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_1r25a")]
+>>>>>>> e28a3b38ae5a155de0cff9424a96841194d399a0
