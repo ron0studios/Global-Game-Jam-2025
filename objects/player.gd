@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var blow_hbox = $BlowArea/CollisionShape2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var breath_cooldown: Timer = $BreathCooldown
 
 const ACCEL = 1000
 const DECEL = 300
@@ -10,8 +11,8 @@ const GRAV = 1000
 const BUOYANCY = 1500
 const SHOOTUP_BUOYANCY = 2000
 const DEPTH = 150
-var fall_factor = 1
-var force
+
+var force = 0
 
 @export var player_number = 1
 @onready var left_input = "p%s_left" % player_number
@@ -103,7 +104,7 @@ func handle_animations():
 
 func handle_blowing(delta):
 	#$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
-	if Input.is_action_just_pressed(blow_input):
+	if Input.is_action_pressed(blow_input) and breath_cooldown.is_stopped():
 		blowing = true
 		$Breathtimer.start()
 		
@@ -122,6 +123,7 @@ func handle_blowing(delta):
 		
 		blowing = false
 		$Breathtimer.stop()
+		breath_cooldown.start()
 		animation.play("blow")
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:

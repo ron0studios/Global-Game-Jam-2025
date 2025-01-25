@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=7 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="PackedScene" uid="uid://5hhqv1ty5cr2" path="res://objects/player.tscn" id="2_164q8"]
 [ext_resource type="PackedScene" uid="uid://b4okuuwiv4502" path="res://spike.tscn" id="3_th80c"]
 [ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
+[ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -46,3 +47,5 @@ script = ExtResource("4_qjm8g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(578, 323)
+script = ExtResource("5_0cxf5")
+targets = Array[NodePath]([NodePath("../bubble"), NodePath("../Player2"), NodePath("../Player")])
