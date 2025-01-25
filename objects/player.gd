@@ -121,25 +121,20 @@ func handle_animations():
 			else:
 				animation.speed_scale = 1
 		
-	if animation.animation == "spin":
-		var flip = -1 if animation.flip_h else 1
-		rotation = deg_to_rad(flip*(90+clamp(velocity.y,-200,200)*0.45))
-	else:
-		rotation = 0
 
 func handle_blowing(delta):
 	#$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
 	if Input.is_action_pressed(blow_input) and breath_cooldown.is_stopped():
 		if breathingin:
 			force = min(1, force+delta*2)
-			if scale < Vector2.ONE*1.25:
-				scale += Vector2.ONE*delta*0.5
+			if animation.scale < Vector2.ONE*1.25:
+				animation.scale += Vector2.ONE*delta*0.5
 		else:
 			force = 0
 			breathingin = true
 
 	if Input.is_action_just_released(blow_input) and breathingin:
-		scale = Vector2.ONE
+		animation.scale = Vector2.ONE
 		#print(force)
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
 		blowparticle.global_position = global_position
