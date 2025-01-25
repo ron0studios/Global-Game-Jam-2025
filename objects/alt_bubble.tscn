@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbjhhrdlgn1mu"]
+[gd_scene load_steps=3 format=3 uid="uid://bbjhhrdlgn1mu"]
 
 [ext_resource type="Script" path="res://objects/alt_bubble.gd" id="1_m455o"]
+[ext_resource type="Script" path="res://objects/alt_bubble_scale.gd" id="2_8ce5h"]
 
 [node name="AltBubble" type="Node2D"]
 script = ExtResource("1_m455o")
+
+[node name="ScaleNode" type="Node2D" parent="."]
+script = ExtResource("2_8ce5h")
