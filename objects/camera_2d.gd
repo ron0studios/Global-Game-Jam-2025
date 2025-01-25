@@ -2,7 +2,8 @@ extends Camera2D
 
 
 @export var targets : Array[NodePath]
-
+func _ready() -> void:
+	zoom = Vector2.ONE * 2
 
 func _process(delta: float) -> void:
 	var avg_pos = Vector2.ZERO
