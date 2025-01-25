@@ -163,7 +163,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"turn",
-"speed": 15.0
+"speed": 30.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_beq50"]
@@ -179,7 +179,8 @@ shape = SubResource("RectangleShape2D_f0w82")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1w2h")
 animation = &"spin"
-frame_progress = 0.681613
+frame = 2
+frame_progress = 0.155462
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7

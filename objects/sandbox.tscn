@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=6 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="PackedScene" uid="uid://5hhqv1ty5cr2" path="res://objects/player.tscn" id="2_164q8"]
 [ext_resource type="PackedScene" uid="uid://b4okuuwiv4502" path="res://spike.tscn" id="3_th80c"]
+[ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -31,3 +32,9 @@ collision_mask = 1
 
 [node name="Spike" parent="." instance=ExtResource("3_th80c")]
 position = Vector2(711, 606)
+
+[node name="tempwater" type="ColorRect" parent="."]
+offset_right = 1202.0
+offset_bottom = 205.0
+color = Color(0, 1, 1, 0.584314)
+script = ExtResource("4_qjm8g")

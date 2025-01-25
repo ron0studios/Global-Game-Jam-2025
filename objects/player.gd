@@ -29,8 +29,7 @@ func _physics_process(delta: float) -> void:
 		states.FLOAT:
 			position.y = Global.water_level
 			velocity.y = 0
-			if Input.is_action_just_pressed("ui_down"):
-				state = states.DESCEND
+			check_descend()
 		states.DESCEND:
 			velocity.y = (Global.water_level+DEPTH-position.y)
 			if Input.is_action_just_released("ui_down"):
@@ -54,6 +53,7 @@ func _physics_process(delta: float) -> void:
 				state = states.FLOAT
 				position.y = Global.water_level
 				velocity.y = 0
+			check_descend()
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = clamp(velocity.x + direction * ACCEL * delta, -MAX_SPD, MAX_SPD)
@@ -69,6 +69,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	$Label.text = states.keys()[state]
 
+func check_descend():
+	#call this to give the player the option to descend
+	if Input.is_action_just_pressed("ui_down"):
+		state = states.DESCEND
 func handle_animations():
 	if (Input.is_action_just_pressed("left") and !$AnimatedSprite2D.flip_h) or (Input.is_action_just_pressed("right") and $AnimatedSprite2D.flip_h):
 		$AnimatedSprite2D.play("turn")
@@ -106,6 +110,6 @@ func handle_blowing(delta):
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:
 	if body.name == "bubble":
-		
+		print("this worked")
 		body.apply_impulse(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized()*1000*force)
 	pass # Replace with function body. 
