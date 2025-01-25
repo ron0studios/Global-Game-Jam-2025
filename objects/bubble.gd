@@ -1,10 +1,7 @@
 extends RigidBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-@export var health = 50:
-	set(value):
-		health = value
-		scale = Vector2.ONE * (0.5+(health/100))
+@export var health = 50
 
 # debug
 var dead = false
@@ -14,7 +11,6 @@ signal hit
 
 func _ready() -> void:
 	animated_sprite_2d.play("default")
-	health = health
 
 	
 #func hit_floor():
@@ -40,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
-	
+	scale = Vector2.ONE * (0.5+(health/100))
 	print(animated_sprite_2d.material.shader)
 
 

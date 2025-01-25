@@ -10,14 +10,14 @@ func _process(delta: float) -> void:
 	var min_dist = 350
 	for i in targets:
 		avg_pos.y += get_node(i).position.y
-		#var dist = position.distance_to(get_node(i).position)
-		#max_dist = max(max_dist, position.distance_to(get_node(i).position))
+		var dist = position.distance_to(get_node(i).position)
+		max_dist = max(max_dist, position.distance_to(get_node(i).position))
 		
 		
 	avg_pos /= len(targets)
 	if avg_pos.y < -100:
 		avg_pos.y = -100
 	position = position.lerp(avg_pos, 1 - pow(delta, 0.3))
-	#if max_dist > 500:
-		#max_dist = 500
-	#zoom = zoom.lerp(Vector2.ONE*700/max(min_dist, max_dist), 1 - pow(delta, 0.3))
+	if max_dist > 500:
+		max_dist = 500
+	zoom = zoom.lerp(Vector2.ONE*700/max(min_dist, max_dist), 1 - pow(delta, 0.3))

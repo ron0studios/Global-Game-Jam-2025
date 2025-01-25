@@ -14,7 +14,6 @@ const DEPTH = 150
 var force = 0
 var breathingin = false
 
-var player_bubble #the node reference for the personal bubble
 
 @export var player_number = 1
 @onready var left_input = "p%s_left" % player_number
@@ -30,9 +29,6 @@ enum states {JUMP, UNDERWATER, FLOAT, DESCEND}
 
 func _ready() -> void:
 	animation.play("idle")
-	player_bubble = load("res://objects/playerbubble.tscn").instantiate()
-	player_bubble.position = position + Vector2(0, -200)
-	get_parent().add_child(player_bubble)
 
 func _physics_process(delta: float) -> void:
 	match state:

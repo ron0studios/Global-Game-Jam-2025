@@ -7,10 +7,3 @@
 
 [node name="Node" type="Node" parent="." index="5"]
 script = ExtResource("1_xtskb")
-
-[node name="Label2" type="Label" parent="." index="6"]
-offset_left = -92.0
-offset_top = -99.0
-offset_right = 144.0
-offset_bottom = -76.0
-text = "this is a special player bubble!!"
