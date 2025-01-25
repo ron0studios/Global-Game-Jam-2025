@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="Texture2D" uid="uid://knxdj4w8lonl" path="res://assets/bgs/tub bg.png" id="1_rty5p"]
 [ext_resource type="PackedScene" uid="uid://5hhqv1ty5cr2" path="res://objects/player.tscn" id="2_164q8"]
-[ext_resource type="Texture2D" uid="uid://cgomu52rbola7" path="res://assets/bgs/tile test 3.png" id="2_bdei4"]
+[ext_resource type="Texture2D" uid="uid://k0wwyxwqms78" path="res://assets/bgs/tile test 3.png" id="2_bdei4"]
 [ext_resource type="PackedScene" uid="uid://b4okuuwiv4502" path="res://spike.tscn" id="3_th80c"]
 [ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
-[ext_resource type="PackedScene" path="res://objects/hud.tscn" id="6_1r25a"]
+[ext_resource type="PackedScene" uid="uid://b7gmnc7a5ym6s" path="res://objects/hud.tscn" id="6_1r25a"]
 [ext_resource type="Texture2D" uid="uid://dipgf2jg7htrj" path="res://assets/bgs/tub fg.png" id="8_dx8lj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]

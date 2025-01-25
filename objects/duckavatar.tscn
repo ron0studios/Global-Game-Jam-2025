@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://456viqgm1ley"]
+
+[ext_resource type="Texture2D" uid="uid://di1gw67ea4tew" path="res://assets/iconbase_angry.png" id="1_pnfy0"]
+[ext_resource type="Texture2D" uid="uid://inyo6nlab6l3" path="res://assets/iconbase.png" id="2_v2j7m"]
+[ext_resource type="Texture2D" uid="uid://vpcuesf8tck1" path="res://assets/iconbase_hurt.png" id="3_hbwhb"]
+[ext_resource type="Texture2D" uid="uid://ckgd3kyjbqm0w" path="res://assets/iconbase_happy.png" id="3_v7s4v"]
+[ext_resource type="Texture2D" uid="uid://mhmstx3wlu6a" path="res://assets/iconbase_sad.png" id="4_rvhdx"]
+[ext_resource type="Script" path="res://objects/duckavatar.gd" id="6_uxo4i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7wv8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pnfy0")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v2j7m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_v7s4v")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hbwhb")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rvhdx")
+}],
+"loop": true,
+"name": &"sad",
+"speed": 5.0
+}]
+
+[node name="duckavatar" type="AnimatedSprite2D"]
+position = Vector2(3.8147e-06, -3.8147e-06)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_u7wv8")
+script = ExtResource("6_uxo4i")
+
+[node name="dbgtimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="dbgtimer" to="." method="_on_dbgtimer_timeout"]
