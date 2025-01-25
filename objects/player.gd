@@ -29,13 +29,15 @@ enum states {JUMP, UNDERWATER, FLOAT, DESCEND, BLOWRECOIL}
 
 func _ready() -> void:
 	animation.play("idle")
-func _enter_tree() -> void:
-	player_bubble = load("res://objects/playerbubble.tscn").instantiate()
-	player_bubble.global_position = global_position
-	get_parent().add_child(player_bubble)
-	print(player_bubble.position)
+
 
 func _physics_process(delta: float) -> void:
+	if player_bubble == null:
+		player_bubble = load("res://objects/playerbubble.tscn").instantiate()
+		#player_bubble.global_position = global_position
+		get_parent().add_child(player_bubble)
+		print(player_bubble.position)
+		player_bubble.show()
 	match state:
 		states.FLOAT:
 			position.y = Global.water_level
