@@ -29,7 +29,7 @@ enum states {JUMP, UNDERWATER, FLOAT, DESCEND, BLOWRECOIL}
 
 func _ready() -> void:
 	animation.play("idle")
-	modulate = Global.player_colors[player_number]
+	modulate = Global.player_colors[player_number-1]
 
 
 func _physics_process(delta: float) -> void:
