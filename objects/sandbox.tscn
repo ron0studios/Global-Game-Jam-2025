@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=8 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="PackedScene" uid="uid://5hhqv1ty5cr2" path="res://objects/player.tscn" id="2_164q8"]
 [ext_resource type="PackedScene" path="res://spike.tscn" id="3_th80c"]
 [ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
+[ext_resource type="PackedScene" uid="uid://ces75heyc3uvp" path="res://objects/hud.tscn" id="6_1r25a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -73,3 +74,12 @@ polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, 
 
 [node name="CollisionPolygon2D2" type="Polygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, -254, 300, 429, 479, 423, 473, -514)
+<<<<<<< HEAD
+=======
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_1r25a")]
+>>>>>>> e3bd7f196dfe9be73fdb4be8f0c0b2ab27ea7b09
