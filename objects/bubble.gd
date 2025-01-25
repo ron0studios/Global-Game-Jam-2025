@@ -35,7 +35,6 @@ func die():
 func _physics_process(delta: float) -> void:
 	if health < 0 and not dead:
 		die()
-		queue_free()
 	if position.y > Global.water_level:
 		health -= delta * 10
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
