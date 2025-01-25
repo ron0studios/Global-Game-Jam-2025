@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://bxxng5bgmayqv" path="res://fonts/Kenney Blocks.ttf" id="1_3q43k"]
 [ext_resource type="Script" path="res://objects/hud.gd" id="1_yn82r"]
 [ext_resource type="Texture2D" uid="uid://df8357di3yj4t" path="res://assets/tab.png" id="2_kue5u"]
-[ext_resource type="PackedScene" uid="uid://456viqgm1ley" path="res://objects/duckavatar.tscn" id="5_0rbj7"]
+[ext_resource type="PackedScene" path="res://objects/duckavatar.tscn" id="5_0rbj7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pcl3d"]
 font_size = 64

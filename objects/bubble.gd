@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		get_parent().add_child(deadbubble)
 		queue_free()
 	if position.y > Global.water_level:
-		if underwater:
+		if !underwater:
 			underwater = true
 			linear_velocity *= 0.7
 		health -= delta * 10
@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		underwater = false
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
+	linear_velocity.clampf(-1000, 1000)
 	
 	#print(animated_sprite_2d.material.shader)
 
