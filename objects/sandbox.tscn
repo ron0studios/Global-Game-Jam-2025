@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=9 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="PackedScene" uid="uid://5hhqv1ty5cr2" path="res://objects/player.tscn" id="2_164q8"]
 [ext_resource type="PackedScene" uid="uid://b4okuuwiv4502" path="res://spike.tscn" id="3_th80c"]
 [ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
-[ext_resource type="PackedScene" path="res://objects/hud.tscn" id="6_1r25a"]
+[ext_resource type="PackedScene" uid="uid://b7gmnc7a5ym6s" path="res://objects/hud.tscn" id="6_1r25a"]
+[ext_resource type="AudioStream" uid="uid://nthat44n43jc" path="res://audio/new_song.wav" id="7_0wrme"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -78,3 +79,7 @@ polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, 
 [node name="HUD" parent="StaticBody2D" instance=ExtResource("6_1r25a")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0wrme")
+autoplay = true

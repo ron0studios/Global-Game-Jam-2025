@@ -128,7 +128,7 @@ func handle_blowing(delta):
 		get_parent().add_child(blowparticle)
 		blow_hbox.set_deferred("disabled", false)
 		
-		velocity.y = force * 300
+		velocity.y += force * 50
 		if state==states.FLOAT:
 			state = states.UNDERWATER
 			
