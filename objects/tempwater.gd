@@ -1,3 +1,4 @@
+@tool
 extends ColorRect
 
 #Delete this script if you like

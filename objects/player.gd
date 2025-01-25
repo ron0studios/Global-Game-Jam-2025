@@ -118,13 +118,15 @@ func handle_blowing(delta):
 		blowparticle.emitting = true
 		blowparticle.position.y -= 10
 		get_parent().add_child(blowparticle)
+		blow_hbox.set_deferred("disabled", false)
 		
 		breathingin = false
 		breath_cooldown.start()
 		animation.play("blow")
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:
-	if body.name == "bubble":
+	print("OH")
+	if body.is_in_group("bubble"):
 		print("this worked")
 		body.apply_impulse(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized()*1000*force)
 
@@ -135,3 +137,7 @@ func _on_animation_finished() -> void:
 	match animation.animation:
 		"turn", "blow":
 			animation.play("idle")
+
+
+func _on_breath_cooldown_timeout() -> void:
+	blow_hbox.set_deferred("disabled", true)

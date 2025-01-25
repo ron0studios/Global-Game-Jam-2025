@@ -25,7 +25,7 @@ point_count = 2
 [sub_resource type="CircleShape2D" id="CircleShape2D_0dx0t"]
 radius = 36.0
 
-[node name="bubble" type="RigidBody2D"]
+[node name="bubble" type="RigidBody2D" groups=["bubble"]]
 collision_layer = 2
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_spq51")

@@ -28,6 +28,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 player="player characters. easy to get all node refs to players"
+bubble=""
 
 [input]
 
