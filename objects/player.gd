@@ -29,12 +29,16 @@ enum states {JUMP, UNDERWATER, FLOAT, DESCEND, BLOWRECOIL}
 
 func _ready() -> void:
 	animation.play("idle")
-	player_bubble = load("res://objects/playerbubble.tscn").instantiate()
-	player_bubble.global_position = global_position
-	get_parent().add_child(player_bubble)
-	print(player_bubble.position)
+	modulate = Global.player_colors[player_number]
+
 
 func _physics_process(delta: float) -> void:
+	if player_bubble == null:
+		player_bubble = load("res://objects/playerbubble.tscn").instantiate()
+		#player_bubble.global_position = global_position
+		get_parent().add_child(player_bubble)
+		print(player_bubble.position)
+		player_bubble.show()
 	match state:
 		states.FLOAT:
 			position.y = Global.water_level
@@ -117,18 +121,20 @@ func handle_animations():
 			else:
 				animation.speed_scale = 1
 		
-		
 
 func handle_blowing(delta):
 	#$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
 	if Input.is_action_pressed(blow_input) and breath_cooldown.is_stopped():
 		if breathingin:
 			force = min(1, force+delta*2)
+			if animation.scale < Vector2.ONE*1.25:
+				animation.scale += Vector2.ONE*delta*0.5
 		else:
 			force = 0
 			breathingin = true
 
 	if Input.is_action_just_released(blow_input) and breathingin:
+		animation.scale = Vector2.ONE
 		#print(force)
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
 		blowparticle.global_position = global_position

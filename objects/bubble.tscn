@@ -238,7 +238,7 @@ radius = 36.0
 
 [node name="bubble" type="RigidBody2D" groups=["bubble"]]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_spq51")
 gravity_scale = 0.2
 contact_monitor = true
