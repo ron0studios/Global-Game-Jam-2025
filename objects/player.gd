@@ -30,7 +30,7 @@ enum states {JUMP, UNDERWATER, FLOAT, DESCEND, BLOWRECOIL}
 func _ready() -> void:
 	animation.play("idle")
 	player_bubble = load("res://objects/playerbubble.tscn").instantiate()
-	player_bubble.position = position + Vector2(0, -200)
+	player_bubble.global_position = global_position
 	get_parent().add_child(player_bubble)
 	print(player_bubble.position)
 
@@ -130,7 +130,6 @@ func handle_blowing(delta):
 			breathingin = true
 
 	if Input.is_action_just_released(blow_input) and breathingin:
-		#print(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized())
 		#print(force)
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
 		blowparticle.global_position = global_position
@@ -154,9 +153,7 @@ func handle_blowing(delta):
 		animation.play("blow")
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:
-	print("OH")
 	if body.is_in_group("bubble"):
-		print("this worked")
 		body.apply_impulse(force*Vector2(2*(body.position.x-position.x),(-50000/max(10, abs(body.position.y-position.y)))))
 
 

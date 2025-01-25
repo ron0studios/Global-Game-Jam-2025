@@ -52,7 +52,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
-	print(body, body.is_in_group("player"), body.position.y)
 	if body.is_in_group("player") and body.position.y > position.y+20:
 		health -= 30
 		linear_velocity.y = min(-300, linear_velocity.y)
