@@ -18,8 +18,8 @@ func _process(delta: float) -> void:
 	avg_pos /= len(targets)
 	if avg_pos.y < -300:
 		avg_pos.y = -300
-	if avg_pos.y > Global.water_level - 20:
-		avg_pos.y = Global.water_level - 20 
+	if avg_pos.y > Global.water_level - 150:
+		avg_pos.y = Global.water_level - 150 
 	position = position.lerp(avg_pos, 1 - pow(delta, 0.3))
 	#if max_dist > 500:
 		#max_dist = 500
