@@ -6,6 +6,9 @@
 script = ExtResource("1")
 top_left_marker = NodePath("TopLeft")
 bottom_right_marker = NodePath("BottomRight")
+surface_color = Color(1, 1, 1, 1)
+water_color = Color(0.352, 0.792, 0.88, 0.317647)
+wave_height = 3.0
 
 [node name="TopLeft" type="Marker2D" parent="."]
 position = Vector2(0, 64)
