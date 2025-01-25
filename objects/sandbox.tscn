@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=11 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="Texture2D" uid="uid://knxdj4w8lonl" path="res://assets/bgs/tub bg.png" id="1_rty5p"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
 [ext_resource type="PackedScene" uid="uid://b7gmnc7a5ym6s" path="res://objects/hud.tscn" id="6_1r25a"]
 [ext_resource type="Texture2D" uid="uid://dipgf2jg7htrj" path="res://assets/bgs/tub fg.png" id="8_dx8lj"]
+[ext_resource type="AudioStream" uid="uid://nthat44n43jc" path="res://audio/new_song.wav" id="9_3f6me"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -101,3 +102,7 @@ polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, 
 position = Vector2(-7, 293)
 scale = Vector2(3, 3)
 texture = ExtResource("8_dx8lj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_3f6me")
+autoplay = true
