@@ -23,9 +23,11 @@ func _process(delta: float) -> void:
 
 func move(delta):
 	if appear:
+		$Sprite2D.speed_scale = 2
 		global_position = global_position.move_toward(destination1, delta*speed)
 	
 	if disappear:
+		$Sprite2D.speed_scale = 1
 		global_position = global_position.move_toward(destination2, delta*speed)
 	
 
