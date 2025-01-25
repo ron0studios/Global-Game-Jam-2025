@@ -12,7 +12,7 @@ var destination2
 signal kill
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	destination1 = Vector2(global_position.x, global_position.y-20)
+	destination1 = Vector2(global_position.x, global_position.y-30)
 	destination2 = global_position
 
 
