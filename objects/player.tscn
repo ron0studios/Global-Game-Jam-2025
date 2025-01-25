@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://5hhqv1ty5cr2"]
+[gd_scene load_steps=29 format=3 uid="uid://5hhqv1ty5cr2"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_1uga2"]
 [ext_resource type="Texture2D" uid="uid://d5gw5bael405" path="res://icon.svg" id="1_nn3tg"]
@@ -6,6 +6,18 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0w82"]
 size = Vector2(5.33333, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be2is"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggl7j"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yimkf"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xmbg"]
 atlas = ExtResource("3_po0rm")
@@ -59,9 +71,17 @@ region = Rect2(0, 96, 32, 32)
 atlas = ExtResource("3_po0rm")
 region = Rect2(32, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fqoq7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r41vj"]
 atlas = ExtResource("3_po0rm")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjckk"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q60ql"]
+atlas = ExtResource("3_po0rm")
+region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4r16"]
 atlas = ExtResource("3_po0rm")
@@ -71,20 +91,31 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("3_po0rm")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q60ql"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqoq7"]
 atlas = ExtResource("3_po0rm")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bjckk"]
-atlas = ExtResource("3_po0rm")
-region = Rect2(32, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r41vj"]
-atlas = ExtResource("3_po0rm")
-region = Rect2(0, 96, 32, 32)
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y1w2h"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be2is")
+}],
+"loop": false,
+"name": &"blow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggl7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yimkf")
+}],
+"loop": true,
+"name": &"breathe",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_nn3tg")
@@ -144,7 +175,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fqoq7")
+"texture": SubResource("AtlasTexture_r41vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjckk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q60ql")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n4r16")
@@ -153,13 +190,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_dwr4t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q60ql")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bjckk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r41vj")
+"texture": SubResource("AtlasTexture_fqoq7")
 }],
 "loop": false,
 "name": &"turn",
@@ -170,6 +201,7 @@ animations = [{
 size = Vector2(20, 239)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 0
 script = ExtResource("1_1uga2")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -178,9 +210,7 @@ shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1w2h")
-animation = &"spin"
-frame = 2
-frame_progress = 0.155462
+animation = &"blow"
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7
@@ -209,4 +239,5 @@ disabled = true
 [node name="Breathtimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
 [connection signal="body_entered" from="BlowArea" to="." method="_on_blow_area_body_entered"]

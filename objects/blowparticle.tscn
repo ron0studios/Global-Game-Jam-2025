@@ -1,20 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmjwmpefnsswm"]
+[gd_scene load_steps=3 format=3 uid="uid://cmjwmpefnsswm"]
+
+[ext_resource type="Texture2D" uid="uid://dwjdjedxaqigc" path="res://assets/puff.png" id="1_vnsgh"]
 
 [sub_resource type="Curve" id="Curve_p0x7g"]
-max_value = 10.0
-_data = [Vector2(0, 5.31572), 0.0, 22.6659, 0, 0, Vector2(1, 0), -37.9347, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 6.03114, 0, 0, Vector2(0.168539, 0.813187), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.338546, 0.0, 0, 0]
+point_count = 3
 
 [node name="blowparticle" type="CPUParticles2D"]
 position = Vector2(0, -32)
 emitting = false
+lifetime = 0.7
 one_shot = true
-explosiveness = 0.72
+explosiveness = 1.0
+texture = ExtResource("1_vnsgh")
 direction = Vector2(0, -1)
-spread = 3.97
-gravity = Vector2(0, 500)
-initial_velocity_min = 300.0
-initial_velocity_max = 500.0
-angular_velocity_min = -105.88
-angular_velocity_max = 116.47
+spread = 3.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+linear_accel_min = -100.0
+linear_accel_max = -100.0
 scale_amount_curve = SubResource("Curve_p0x7g")
