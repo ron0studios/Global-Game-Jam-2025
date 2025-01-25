@@ -32,13 +32,10 @@ func _physics_process(delta: float) -> void:
 		get_parent().add_child(deadbubble)
 		queue_free()
 	if position.y > Global.water_level:
-		if !underwater:
-			underwater = true
-			linear_velocity *= 0.5
+		underwater = true
+		linear_velocity *= 0.7
 		health -= delta * 10
-		print("ee")
-		linear_velocity.y += (Global.water_level-position.y) * 0.2
-		#apply_impulse(Vector2.UP * (Global.water_level-position.y) * 0.2)
+		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.2)
 	else:
 		underwater = false
 	linear_velocity.x = clamp(linear_velocity.x,-1000,1000)
