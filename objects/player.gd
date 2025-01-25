@@ -29,6 +29,7 @@ enum states {JUMP, UNDERWATER, FLOAT, DESCEND, BLOWRECOIL}
 
 func _ready() -> void:
 	animation.play("idle")
+func _enter_tree() -> void:
 	player_bubble = load("res://objects/playerbubble.tscn").instantiate()
 	player_bubble.global_position = global_position
 	get_parent().add_child(player_bubble)
