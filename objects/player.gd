@@ -63,12 +63,19 @@ func _physics_process(delta: float) -> void:
 		if velocity.x < 0:
 			velocity.x = min(0, velocity.x + DECEL*delta)
 	
+	handle_animations()
 	handle_blowing(delta)
 
 	move_and_slide()
 	$Label.text = states.keys()[state]
 
-
+func handle_animations():
+	if (Input.is_action_just_pressed("left") and !$AnimatedSprite2D.flip_h) or (Input.is_action_just_pressed("right") and $AnimatedSprite2D.flip_h):
+		$AnimatedSprite2D.play("turn")
+	
+	if $AnimatedSprite2D.animation == "turn" and $AnimatedSprite2D.frame == 5:
+		$AnimatedSprite2D.play("idle")
+		$AnimatedSprite2D.flip_h = !$AnimatedSprite2D.flip_h
 
 func handle_blowing(delta):
 	$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
