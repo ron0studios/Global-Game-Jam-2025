@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="PackedScene" uid="uid://5hhqv1ty5cr2" path="res://objects/player.tscn" id="2_164q8"]
-[ext_resource type="PackedScene" uid="uid://b4okuuwiv4502" path="res://spike.tscn" id="3_th80c"]
+[ext_resource type="PackedScene" path="res://spike.tscn" id="3_th80c"]
 [ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
 
@@ -26,19 +26,22 @@ position = Vector2(581.5, 604.5)
 shape = SubResource("RectangleShape2D_f2nrx")
 
 [node name="bubble" parent="." instance=ExtResource("1_0m1l4")]
-position = Vector2(75, -169)
+position = Vector2(46, -110)
 collision_layer = 1
 collision_mask = 1
+linear_damp = 0.0
 
 [node name="bubble2" parent="." instance=ExtResource("1_0m1l4")]
-position = Vector2(-160, -166)
+position = Vector2(-45, 4)
 collision_layer = 1
 collision_mask = 1
+linear_damp = 0.0
 
 [node name="bubble3" parent="." instance=ExtResource("1_0m1l4")]
 position = Vector2(-37, -157)
 collision_layer = 1
 collision_mask = 1
+linear_damp = 0.0
 
 [node name="Player" parent="." instance=ExtResource("2_164q8")]
 
@@ -70,5 +73,3 @@ polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, 
 
 [node name="CollisionPolygon2D2" type="Polygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, -254, 300, 429, 479, 423, 473, -514)
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
