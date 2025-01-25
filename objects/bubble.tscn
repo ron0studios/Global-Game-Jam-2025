@@ -1,10 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://53cd60akj2u0"]
+[gd_scene load_steps=19 format=3 uid="uid://53cd60akj2u0"]
 
 [ext_resource type="Script" path="res://objects/bubble.gd" id="1_xtskb"]
+[ext_resource type="Shader" uid="uid://df7xb4y78qh6r" path="res://objects/bubble.tres" id="2_f3od5"]
 [ext_resource type="Texture2D" uid="uid://dsxltbqlx8y88" path="res://assets/bubble.png" id="2_vv6od"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_spq51"]
 bounce = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5am8"]
+shader = ExtResource("2_f3od5")
+shader_parameter/Outline = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o38fc"]
 atlas = ExtResource("2_vv6od")
@@ -92,13 +97,15 @@ max_contacts_reported = 1
 linear_damp = 2.0
 script = ExtResource("1_xtskb")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_w5am8")
+position = Vector2(-3, 2)
 scale = Vector2(1.19, 1.19)
 sprite_frames = SubResource("SpriteFrames_gyifw")
-frame_progress = 0.471687
+frame_progress = 0.450457
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_cju41")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -120,6 +127,7 @@ hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_2sq8o")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
