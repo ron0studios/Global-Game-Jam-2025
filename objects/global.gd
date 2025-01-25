@@ -6,3 +6,9 @@ var timer = 0
 #func _process(delta: float) -> void:
 	#timer += delta
 	#water_level = 300 + sin(timer)*100
+var player_colors = [
+	Color.WHITE,
+	Color.PALE_VIOLET_RED,
+	Color.CORNFLOWER_BLUE,
+	Color.PALE_GREEN
+	]
