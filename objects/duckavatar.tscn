@@ -60,4 +60,8 @@ script = ExtResource("6_uxo4i")
 wait_time = 3.0
 autostart = true
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="timeout" from="dbgtimer" to="." method="_on_dbgtimer_timeout"]
