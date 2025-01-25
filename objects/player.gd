@@ -49,7 +49,10 @@ func _physics_process(delta: float) -> void:
 			if position.y > Global.water_level:
 				if velocity.y > 0:
 					velocity.y*=0.5
-					state = states.UNDERWATER
+					if velocity.y < 150:
+						state = states.UNDERWATER # stop at the surface
+					else:
+						state = states.BLOWRECOIL # continue bouncing
 				else:
 					velocity.y -= SHOOTUP_BUOYANCY * delta
 			else:
@@ -69,6 +72,7 @@ func _physics_process(delta: float) -> void:
 			if velocity.y <= 0:
 				state = states.JUMP
 				velocity.y = 0
+			check_descend()
 			
 	var direction := Input.get_axis(left_input, right_input)
 	if direction:
@@ -107,7 +111,12 @@ func handle_animations():
 				animation.speed_scale = -1
 			else:
 				animation.speed_scale = 1
-		
+		if state == states.BLOWRECOIL:
+			animation.play("spin")
+			if animation.flip_h:
+				animation.speed_scale = -1
+			else:
+				animation.speed_scale = 1
 		
 		
 
