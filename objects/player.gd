@@ -128,6 +128,10 @@ func handle_blowing(delta):
 		get_parent().add_child(blowparticle)
 		blow_hbox.set_deferred("disabled", false)
 		
+		velocity.y = force * 300
+		if state==states.FLOAT:
+			state = states.UNDERWATER
+			
 		breathingin = false
 		breath_cooldown.start()
 		animation.play("blow")
