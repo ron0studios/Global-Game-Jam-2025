@@ -39,6 +39,7 @@ offset_right = 128.0
 offset_bottom = -960.0
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset = Vector2(116, 60)
 theme_override_fonts/font = ExtResource("1_3q43k")
 theme_override_font_sizes/font_size = 50
 text = "1:00"

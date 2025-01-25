@@ -127,11 +127,14 @@ func handle_blowing(delta):
 	if Input.is_action_pressed(blow_input) and breath_cooldown.is_stopped():
 		if breathingin:
 			force = min(1, force+delta*2)
+			if scale < Vector2.ONE*1.25:
+				scale += Vector2.ONE*delta*0.5
 		else:
 			force = 0
 			breathingin = true
 
 	if Input.is_action_just_released(blow_input) and breathingin:
+		scale = Vector2.ONE
 		#print(force)
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
 		blowparticle.global_position = global_position

@@ -1,7 +1,8 @@
 extends Control
 
 
-var clock = 60
+var clock = 30
+var _scale = Vector2.ONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,5 +24,11 @@ func seconds2hhmmss(total_seconds: float) -> String:
 
 func _on_timer_timer_timeout() -> void:
 	clock -= 1
+	var tween = get_tree().create_tween()
+	$Timer.scale = _scale*1.1
+	tween.tween_property($Timer, "scale", _scale,0.1)
 	$Timer.text = seconds2hhmmss(clock)
+	
+	if clock < 20:
+		$Timer.modulate = Color.ORANGE
 	pass # Replace with function body.
