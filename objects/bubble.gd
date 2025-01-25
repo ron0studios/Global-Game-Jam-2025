@@ -13,6 +13,10 @@ signal hit
 func _ready() -> void:
 	animated_sprite_2d.play("default")
 
+func check_hp(hp):
+	if hp > 0: return round(hp)
+	else: return 100
+	
 func hit_floor():
 	var wobble = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
 	#$Sprite2D.scale = Vector2(1.2,1.2)
@@ -23,6 +27,7 @@ func hit_floor():
 func _physics_process(delta: float) -> void:
 	if position.y > Global.water_level:
 		hp -= delta * 10
+		hp = check_hp(hp)
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
 	$Label.text = str(hp)
 	rotation = 0
@@ -40,4 +45,6 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 	print(body, body.is_in_group("player"), body.position.y)
 	if body.is_in_group("player") and body.position.y > position.y+20:
 		hp -= 30
+		hp = check_hp(hp)
 		linear_velocity.y = min(-300, linear_velocity.y)
+		
