@@ -4,11 +4,11 @@ extends RigidBody2D
 @export var health = 50:
 	set(value):
 		health = value
-		scale = Vector2.ONE * (0.5+(health/100))
+		#scale = Vector2.ONE * (0.5+(health/100))
 
 
 
-signal hit
+var underwater = false
 
 func _ready() -> void:
 	animated_sprite_2d.play("default")
@@ -32,8 +32,13 @@ func _physics_process(delta: float) -> void:
 		get_parent().add_child(deadbubble)
 		queue_free()
 	if position.y > Global.water_level:
+		if underwater:
+			underwater = true
+			linear_velocity *= 0.7
 		health -= delta * 10
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
+	else:
+		underwater = false
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
 	
