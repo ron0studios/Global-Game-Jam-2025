@@ -11,8 +11,9 @@ const GRAV = 1000
 const BUOYANCY = 1500
 const SHOOTUP_BUOYANCY = 2000
 const DEPTH = 150
-
 var force = 0
+var breathingin = false
+
 
 @export var player_number = 1
 @onready var left_input = "p%s_left" % player_number
@@ -24,16 +25,10 @@ var state = states.FLOAT:
 	set(value):
 		state = value
 		animation.animation = "idle"
-enum states {JUMP, UNDERWATER, FLOAT, TURNAROUND, DESCEND}
+enum states {JUMP, UNDERWATER, FLOAT, DESCEND}
 
-
-var blowing = false: #enables blowing hitbox when true
-	set(value):
-		if blowing != value:
-			blow_hbox.set_deferred("disabled", !value)
-		blowing = value
-
-
+func _ready() -> void:
+	animation.play("idle")
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -78,6 +73,7 @@ func _physics_process(delta: float) -> void:
 	handle_blowing(delta)
 
 	move_and_slide()
+	position.x = clampf(position.x, -Global.wall_limit, Global.wall_limit)
 	#$Label.text = states.keys()[state]
 
 func check_descend():
@@ -86,7 +82,7 @@ func check_descend():
 		state = states.DESCEND
 
 func handle_animations():
-	if !$Breathtimer.is_stopped():
+	if breathingin:
 		animation.play("breathe")
 	else:
 		if (Input.is_action_just_pressed(left_input) and !animation.flip_h) or (Input.is_action_just_pressed(right_input) and animation.flip_h):
@@ -105,13 +101,15 @@ func handle_animations():
 func handle_blowing(delta):
 	#$BlowArea.rotation = deg_to_rad(90) + get_angle_to(get_global_mouse_position())
 	if Input.is_action_pressed(blow_input) and breath_cooldown.is_stopped():
-		blowing = true
-		$Breathtimer.start()
-		
-	if Input.is_action_just_released(blow_input):
+		if breathingin:
+			force = min(1, force+delta)
+		else:
+			force = 0
+			breathingin = true
+
+	if Input.is_action_just_released(blow_input) and breathingin:
 		#print(global_position.direction_to($BlowArea/CollisionShape2D.global_position).normalized())
-		force = ($Breathtimer.wait_time-$Breathtimer.time_left)/$Breathtimer.wait_time
-		print(force, "use the force luke")
+		print(force)
 		var blowparticle = preload("res://objects/blowparticle.tscn").instantiate()
 		blowparticle.global_position = global_position
 		blowparticle.initial_velocity_min = force * 400
@@ -121,8 +119,7 @@ func handle_blowing(delta):
 		blowparticle.position.y -= 10
 		get_parent().add_child(blowparticle)
 		
-		blowing = false
-		$Breathtimer.stop()
+		breathingin = false
 		breath_cooldown.start()
 		animation.play("blow")
 

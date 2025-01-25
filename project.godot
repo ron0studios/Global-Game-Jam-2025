@@ -21,9 +21,13 @@ Global="*res://objects/global.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="viewport"
+
+[global_group]
+
+player="player characters. easy to get all node refs to players"
 
 [input]
 

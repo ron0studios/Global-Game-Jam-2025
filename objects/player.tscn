@@ -200,7 +200,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_beq50"]
 size = Vector2(20, 239)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 0
 script = ExtResource("1_1uga2")
 
@@ -210,7 +210,7 @@ shape = SubResource("RectangleShape2D_f0w82")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1w2h")
-animation = &"blow"
+animation = &"idle"
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 7
@@ -235,9 +235,6 @@ collision_mask = 2
 position = Vector2(0, -109.5)
 shape = SubResource("RectangleShape2D_beq50")
 disabled = true
-
-[node name="Breathtimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="BreathCooldown" type="Timer" parent="."]
 wait_time = 0.3

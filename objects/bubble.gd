@@ -21,7 +21,8 @@ func hit_floor():
 	pass
 
 func _physics_process(delta: float) -> void:
-	pass
+	if position.y > Global.water_level:
+		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
 	
 
 

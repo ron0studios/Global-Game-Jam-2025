@@ -12,6 +12,7 @@ size = Vector2(1173, 57)
 [node name="sandbox" type="Node2D"]
 
 [node name="box" type="Node2D" parent="."]
+position = Vector2(-523, -151)
 
 [node name="ColorRect" type="ColorRect" parent="box"]
 offset_top = 576.0
@@ -25,7 +26,17 @@ position = Vector2(581.5, 604.5)
 shape = SubResource("RectangleShape2D_f2nrx")
 
 [node name="bubble" parent="." instance=ExtResource("1_0m1l4")]
-position = Vector2(584, 80)
+position = Vector2(46, -110)
+collision_layer = 1
+collision_mask = 1
+
+[node name="bubble2" parent="." instance=ExtResource("1_0m1l4")]
+position = Vector2(-45, 4)
+collision_layer = 1
+collision_mask = 1
+
+[node name="bubble3" parent="." instance=ExtResource("1_0m1l4")]
+position = Vector2(-37, -157)
 collision_layer = 1
 collision_mask = 1
 
@@ -40,12 +51,21 @@ player_number = 2
 position = Vector2(711, 606)
 
 [node name="tempwater" type="ColorRect" parent="."]
-offset_right = 1202.0
+offset_left = -662.0
+offset_right = 540.0
 offset_bottom = 205.0
 color = Color(0, 1, 1, 0.584314)
 script = ExtResource("4_qjm8g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(578, 323)
+position = Vector2(321, -41)
 script = ExtResource("5_0cxf5")
-targets = Array[NodePath]([NodePath("../bubble"), NodePath("../Player2"), NodePath("../Player")])
+targets = Array[NodePath]([NodePath("../bubble"), NodePath("../Player2"), NodePath("../Player"), NodePath("../bubble2"), NodePath("../bubble3")])
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, -254, 300, 429, 479, 423, 473, -514)
+
+[node name="CollisionPolygon2D2" type="Polygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-491, -466, -483, 500, -300, 500, -300, -254, 300, -254, 300, 429, 479, 423, 473, -514)
