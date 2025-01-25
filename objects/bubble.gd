@@ -15,6 +15,7 @@ signal hit
 func _ready() -> void:
 	animated_sprite_2d.play("default")
 
+	
 func hit_floor():
 	var wobble = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
 	#$Sprite2D.scale = Vector2(1.2,1.2)
@@ -42,3 +43,4 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 	if body.is_in_group("player") and body.position.y > position.y+20:
 		health -= 30
 		linear_velocity.y = min(-300, linear_velocity.y)
+		
