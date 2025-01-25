@@ -6,8 +6,6 @@ extends RigidBody2D
 		health = value
 		scale = Vector2.ONE * (0.5+(health/100))
 
-# debug
-var dead = false
 
 
 signal hit
@@ -23,18 +21,16 @@ func _ready() -> void:
 	#$CPUParticles2D.emitting = true
 	#hit.emit()
 
-func die():
-	var blowparticle = preload("res://objects/popparticle.tscn").instantiate()
-	blowparticle.global_position = global_position
-	blowparticle.emitting = true
-	blowparticle.position.y -= 10
-	get_parent().add_child(blowparticle)
-	dead = true
+
 	
 
 func _physics_process(delta: float) -> void:
-	if health < 0 and not dead:
-		die()
+	if health < 0:
+		var deadbubble = preload("res://objects/deadbubble.tscn").instantiate()
+		deadbubble.position = position
+		deadbubble.play("default")
+		get_parent().add_child(deadbubble)
+		queue_free()
 	if position.y > Global.water_level:
 		health -= delta * 10
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)

@@ -65,7 +65,7 @@ script = ExtResource("4_qjm8g")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(321, -41)
 script = ExtResource("5_0cxf5")
-targets = Array[NodePath]([NodePath("../bubble"), NodePath("../Player2"), NodePath("../Player"), NodePath("../bubble2"), NodePath("../bubble3")])
+targets = Array[NodePath]([NodePath("../Player2"), NodePath("../Player")])
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
