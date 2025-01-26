@@ -28,21 +28,22 @@ var state = states.FLOAT:
 enum states {JUMP, UNDERWATER, FLOAT, DESCEND, BLOWRECOIL}
 
 func _ready() -> void:
-	if player_number > Global.num_of_players:
-		queue_free()
 	animation.play("idle")
 	modulate = Global.player_colors[player_number-1]
 
 
 func _physics_process(delta: float) -> void:
-	if player_bubble == null:
-		player_bubble = load("res://objects/playerbubble.tscn").instantiate()
-		#player_bubble.global_position = global_position
-		player_bubble.get_node("AnimatedSprite2D/Sprite2D").modulate = modulate
-		get_parent().add_child(player_bubble)
-		player_bubble.position = position + Vector2(0, -300)
-		print(player_bubble.position)
-		player_bubble.show()
+	if player_number > Global.num_of_players:
+		queue_free()
+	else:
+		if player_bubble == null:
+			player_bubble = load("res://objects/playerbubble.tscn").instantiate()
+			#player_bubble.global_position = global_position
+			player_bubble.get_node("AnimatedSprite2D/Sprite2D").modulate = modulate
+			get_parent().add_child(player_bubble)
+			player_bubble.position = position + Vector2(0, -300)
+			print(player_bubble.position)
+			player_bubble.show()
 	match state:
 		states.FLOAT:
 			position.y = Global.water_level
