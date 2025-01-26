@@ -29,13 +29,27 @@ text = "Wtf is the game name"
 layout_mode = 2
 text = "       PLAY       "
 
-[node name="HSlider" type="HSlider" parent="CanvasLayer/VBoxContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-min_value = 1.0
-max_value = 4.0
-value = 1.0
-tick_count = 4
-ticks_on_borders = true
+text = "No. Of Players"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "-"
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "+"
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_button_up"]
