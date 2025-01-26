@@ -1,17 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7gmnc7a5ym6s"]
+[gd_scene load_steps=5 format=3 uid="uid://b7gmnc7a5ym6s"]
 
 [ext_resource type="FontFile" uid="uid://bxxng5bgmayqv" path="res://fonts/Kenney Blocks.ttf" id="1_3q43k"]
 [ext_resource type="Script" path="res://objects/hud.gd" id="1_yn82r"]
 [ext_resource type="Texture2D" uid="uid://df8357di3yj4t" path="res://assets/tab.png" id="2_kue5u"]
-
-[sub_resource type="Gradient" id="Gradient_pv785"]
-offsets = PackedFloat32Array(0.339506, 0.984568)
-colors = PackedColorArray(0, 0, 0, 0.701961, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cvv3v"]
-gradient = SubResource("Gradient_pv785")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pcl3d"]
 font_size = 64
@@ -25,18 +16,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yn82r")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -248.0
+offset_top = -161.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_cvv3v")
+color = Color(0, 0, 0, 0.541176)
 
 [node name="tab" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

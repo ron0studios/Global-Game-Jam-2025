@@ -57,7 +57,6 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 		get_parent().add_child(smack_inst)
 		if health <= 0:
 			var spark = load("res://objects/spark.tscn").instantiate()
-			print(body.player_bubble)
 			get_parent().add_child(spark)
 			spark.start_pos = position
 			spark.modulate = body.modulate

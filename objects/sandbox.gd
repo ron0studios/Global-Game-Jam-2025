@@ -27,5 +27,7 @@ func make_bubble(start_y):
 	add_child(bubble_inst)
 
 func game_over():
+	print("WHAT", Global.results)
 	timer.stop()
 	animation_player.play_backwards("curtainopen")
+	get_tree().paused = true
