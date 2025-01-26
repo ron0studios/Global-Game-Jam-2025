@@ -17,6 +17,7 @@ func _on_timer_timeout() -> void:
 	if randi_range(0,3) == 0:
 		for i in randi_range(1,2):
 			make_bubble(-700)
+			await get_tree().create_timer(0.1).timeout
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func make_bubble(start_y):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0tv57l8wh87u"]
+[gd_scene load_steps=15 format=3 uid="uid://c0tv57l8wh87u"]
 
 [ext_resource type="Script" path="res://objects/deadbubble.gd" id="1_hi3u4"]
 [ext_resource type="Texture2D" uid="uid://dbkvy47vnh3rx" path="res://assets/bubbleburst.png" id="1_qll0l"]
+[ext_resource type="AudioStream" uid="uid://d2o4o3on1gpg6" path="res://audio/pop1.mp3" id="3_c8oy6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wrtvo"]
 atlas = ExtResource("1_qll0l")
@@ -86,5 +87,8 @@ sprite_frames = SubResource("SpriteFrames_i7sy2")
 frame = 9
 frame_progress = 1.0
 script = ExtResource("1_hi3u4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_c8oy6")
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
