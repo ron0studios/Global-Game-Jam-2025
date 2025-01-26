@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var wade_sound = $WadeSound
 @onready var blow_sound = $BlowSound
+@onready var breathe_sound = $BreatheSound
 
 const ACCEL = 1000
 const DECEL = 300
@@ -142,6 +143,8 @@ func handle_blowing(delta):
 				animation.scale += Vector2.ONE*delta*0.5
 		else:
 			force = 0
+			breathe_sound.pitch_scale = randf_range(0.9, 1.1)
+			breathe_sound.play()
 			breathingin = true
 
 	if Input.is_action_just_released(blow_input) and breathingin:
@@ -156,6 +159,7 @@ func handle_blowing(delta):
 		blowparticle.position.y -= 10
 		get_parent().add_child(blowparticle)
 		blow_hbox.set_deferred("disabled", false)
+		blow_sound.pitch_scale = randf_range(0.9, 1.3)
 		blow_sound.play()
 		
 		if state == states.FLOAT:

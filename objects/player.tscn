@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://5hhqv1ty5cr2"]
+[gd_scene load_steps=33 format=3 uid="uid://5hhqv1ty5cr2"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_1uga2"]
 [ext_resource type="Texture2D" uid="uid://d5gw5bael405" path="res://icon.svg" id="1_nn3tg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcdn0nr08p5lv" path="res://assets/doesnt do anything.png" id="4_sh4il"]
 [ext_resource type="AudioStream" uid="uid://dwtxfwedsu7ov" path="res://audio/wade.mp3" id="5_2xvuq"]
 [ext_resource type="AudioStream" uid="uid://bx5c2o4vgigvn" path="res://audio/blow.mp3" id="6_kcjxx"]
+[ext_resource type="AudioStream" uid="uid://c5km6doyt5qhh" path="res://audio/breathin.mp3" id="7_p01wo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0w82"]
 size = Vector2(5.33333, 6)
@@ -258,8 +259,12 @@ volume_db = -4.07
 
 [node name="BlowSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_kcjxx")
-volume_db = -6.0
+volume_db = -4.0
 pitch_scale = 1.2
+
+[node name="BreatheSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_p01wo")
+volume_db = -6.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
 [connection signal="body_entered" from="BlowArea" to="." method="_on_blow_area_body_entered"]
