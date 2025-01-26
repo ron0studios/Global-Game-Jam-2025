@@ -28,13 +28,13 @@ func _process(delta):
 func _on_timer_timeout():
 	var curr_value = player.player_bubble.health
 	var diff = curr_value - last_value
-	if diff < -50:
+	if diff < -20:
 		duckavatar.texture = ducks["sad"]
 	else:
 		if diff < 0:
 			duckavatar.texture = ducks["hurt"]
 		else:
-			if diff > 50:
+			if diff > 20:
 				duckavatar.texture = ducks["happy"]
 			else:
 				duckavatar.texture = ducks["normal"]
