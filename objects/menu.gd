@@ -9,6 +9,7 @@ extends Control
 	preload("res://assets/3players.png"),
 	preload("res://assets/4players.png")
 ]
+@onready var howtoplay = $CanvasLayer/Button2
 
 var timer = 0
 
@@ -23,7 +24,8 @@ func _process(delta: float) -> void:
 	birds.position = Vector2(sin(timer*0.5)*6, cos(timer*1.4)*9)
 	birds.rotation = sin(timer*0.5)*0.2
 	play_button.position.y = 411 + sin(timer*3.5)*10
-	players_icon.position.y = 696 + sin(timer*3.5+1)*10
+	players_icon.position.y = 696 + sin(timer*3.5+1.5)*10
+	howtoplay.position.y = 537 + sin(timer*3.5+0.75)*10
 	
 
 
@@ -47,3 +49,7 @@ func _on_players_pressed():
 	players_icon.icon = player_icons[Global.num_of_players-2]
 	players_icon.get_node("AnimationPlayer").stop()
 	players_icon.get_node("AnimationPlayer").play("clickwobble")
+
+
+func _on_button_2_pressed():
+	get_tree().change_scene_to_file("res://objects/howtoplay.tscn")

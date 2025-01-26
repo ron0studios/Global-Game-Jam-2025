@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dmpnkv8mw74b4" path="res://audio/quack.mp3" id="5_mm1my"]
 [ext_resource type="Script" path="res://objects/duckavatar.gd" id="6_uxo4i"]
 
-[node name="ColorRect" type="ColorRect"]
+[node name="ColorRect2" type="ColorRect"]
 custom_minimum_size = Vector2(200, 140)
 offset_right = 99.0
 offset_bottom = 31.0

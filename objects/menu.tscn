@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqjga7q0d1pmr"]
+[gd_scene load_steps=15 format=3 uid="uid://bqjga7q0d1pmr"]
 
 [ext_resource type="Script" path="res://objects/menu.gd" id="1_lcpgb"]
 [ext_resource type="Texture2D" uid="uid://baa4t0ub5v3hq" path="res://assets/bgs/menu.png" id="2_0vi74"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://mwplauuanuj" path="res://assets/playbutton.png" id="4_miglj"]
 [ext_resource type="Texture2D" uid="uid://t84i2sud22hi" path="res://assets/titletub.png" id="4_myaui"]
 [ext_resource type="Texture2D" uid="uid://ixfqmqao4wym" path="res://assets/titlebirds.png" id="5_j55yq"]
+[ext_resource type="Texture2D" uid="uid://du406uro8phja" path="res://assets/howtoplaybubble.png" id="5_meenb"]
 [ext_resource type="Texture2D" uid="uid://cs4fymetwtfa3" path="res://assets/2players.png" id="5_qfdx6"]
 [ext_resource type="Texture2D" uid="uid://diqd8nat6ylnd" path="res://assets/logo.png" id="6_vi77d"]
 [ext_resource type="AudioStream" uid="uid://nthat44n43jc" path="res://audio/new_song.wav" id="10_8vnh7"]
@@ -79,6 +80,20 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 1304.0
+offset_top = 537.0
+offset_right = 1659.0
+offset_bottom = 859.0
+scale = Vector2(0.7, 0.7)
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_28g3d")
+theme_override_font_sizes/font_size = 128
+icon = ExtResource("5_meenb")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [node name="Players" type="Button" parent="CanvasLayer"]
 offset_left = 1358.0
 offset_top = 696.0
@@ -123,4 +138,5 @@ stream = ExtResource("10_8vnh7")
 autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Players" to="." method="_on_players_pressed"]

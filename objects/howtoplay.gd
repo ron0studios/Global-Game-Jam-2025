@@ -1,6 +1,5 @@
 extends ColorRect
 
 
-func _input(event):
-	if event.is_action_pressed("p1_blow"):
-		get_tree().change_scene_to_file("res://objects/sandbox.tscn")
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://objects/menu.tscn")
