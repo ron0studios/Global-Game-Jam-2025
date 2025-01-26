@@ -1,6 +1,7 @@
 extends RigidBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var smack = preload("res://objects/smack.tscn")
 
 @export var health = 50:
 	set(value):
@@ -51,6 +52,9 @@ func _physics_process(delta: float) -> void:
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("player") and body.position.y > position.y+20:
 		health -= 30
+		var smack_inst = smack.instantiate()
+		smack_inst.position = position + Vector2(0, 20*scale.y)
+		get_parent().add_child(smack_inst)
 		if health <= 0:
 			var spark = load("res://objects/spark.tscn").instantiate()
 			print(body.player_bubble)

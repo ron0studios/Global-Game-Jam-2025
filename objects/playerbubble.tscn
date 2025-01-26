@@ -14,9 +14,6 @@ offset = Vector2(-4.215, 0.09)
 show_behind_parent = true
 texture = ExtResource("2_gxtey")
 
-[node name="Label" parent="." index="3"]
-visible = false
-
 [node name="Label2" type="Label" parent="." index="4"]
 visible = false
 offset_left = -81.0
