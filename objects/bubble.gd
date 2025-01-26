@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
-	if body.is_in_group("player") and body.velocity.y < 0:
+	if body.is_in_group("player") and (body.velocity.y < 0 or body.global_position.y > global_position.y+20):
 		health -= 10
 		var smack_inst = smack.instantiate()
 		smack_inst.position = position + Vector2(0, 20*scale.y)
