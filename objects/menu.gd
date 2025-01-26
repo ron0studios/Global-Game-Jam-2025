@@ -5,6 +5,7 @@ extends Control
 @onready var play_button = $CanvasLayer/Button
 @onready var players_icon = $CanvasLayer/Players
 @onready var player_icons = [
+	preload("res://assets/1player.png"),
 	preload("res://assets/2players.png"),
 	preload("res://assets/3players.png"),
 	preload("res://assets/4players.png")
@@ -45,8 +46,8 @@ func _on_h_slider_value_changed(value: float) -> void:
 
 
 func _on_players_pressed():
-	Global.num_of_players = wrap(Global.num_of_players + 1, 2, 5)
-	players_icon.icon = player_icons[Global.num_of_players-2]
+	Global.num_of_players = wrap(Global.num_of_players+1, 1, 5)
+	players_icon.icon = player_icons[Global.num_of_players-1]
 	players_icon.get_node("AnimationPlayer").stop()
 	players_icon.get_node("AnimationPlayer").play("clickwobble")
 
