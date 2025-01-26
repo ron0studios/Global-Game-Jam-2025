@@ -1,23 +1,24 @@
 extends Camera2D
 
 
-@export var targets : Array[NodePath]
+
 func _ready() -> void:
 	zoom = Vector2.ONE * 2
 	position.x = 0
 	position.y = Global.water_level - 20
 
 func _process(delta: float) -> void:
+	var players = get_tree().get_nodes_in_group("player")
 	var avg_pos = Vector2.ZERO
 	var max_dist = 0
 	var min_dist = 350
-	for i in targets:
-		avg_pos.y += get_node(i).position.y
+	for i in players:
+		avg_pos.y += i.position.y
 		#var dist = position.distance_to(get_node(i).position)
 		#max_dist = max(max_dist, position.distance_to(get_node(i).position))
 		
 		
-	avg_pos /= len(targets)
+	avg_pos /= len(players)
 	if avg_pos.y < -300:
 		avg_pos.y = -300
 	if avg_pos.y > Global.water_level - 20:
