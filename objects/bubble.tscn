@@ -1,10 +1,14 @@
-[gd_scene load_steps=30 format=3 uid="uid://53cd60akj2u0"]
+[gd_scene load_steps=31 format=3 uid="uid://53cd60akj2u0"]
 
 [ext_resource type="Script" path="res://objects/bubble.gd" id="1_xtskb"]
+[ext_resource type="Script" path="res://objects/scalebubble.gd" id="2_f5eoo"]
 [ext_resource type="Texture2D" uid="uid://dsxltbqlx8y88" path="res://assets/bubble.png" id="2_vv6od"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_spq51"]
 bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cju41"]
+radius = 32.0
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_yhec5"]
 input_name = "time"
@@ -230,9 +234,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cju41"]
-radius = 32.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0dx0t"]
 radius = 36.0
 
@@ -246,23 +247,29 @@ max_contacts_reported = 1
 linear_damp = 2.0
 script = ExtResource("1_xtskb")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.38419e-07, 1.19209e-07)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_cju41")
+script = ExtResource("2_f5eoo")
+
+[node name="Node2D" type="Node2D" parent="."]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_8e2jc")
 position = Vector2(-3, 2)
 scale = Vector2(1.19, 1.19)
 sprite_frames = SubResource("SpriteFrames_gyifw")
 frame_progress = 0.509404
+script = ExtResource("2_f5eoo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_cju41")
-
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+position = Vector2(2.52101, -1.68067)
+scale = Vector2(0.840336, 0.840336)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 shape = SubResource("CircleShape2D_0dx0t")
 
 [node name="Label" type="Label" parent="."]

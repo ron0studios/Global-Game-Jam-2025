@@ -1,10 +1,11 @@
 extends RigidBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @export var health = 50:
 	set(value):
 		health = value
-		#scale = Vector2.ONE * (0.5+(health/100))
+		
 
 
 
@@ -15,11 +16,7 @@ func _ready() -> void:
 	health = health
 
 	
-#func hit_floor():
-	#var wobble = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
-	##$Sprite2D.scale = Vector2(1.2,1.2)
-	#$CPUParticles2D.emitting = true
-	#hit.emit()
+
 
 
 	
@@ -42,7 +39,6 @@ func _physics_process(delta: float) -> void:
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
 	linear_velocity.clampf(-200, 200)
-	
 	#print(animated_sprite_2d.material.shader)
 
 
