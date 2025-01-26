@@ -1,20 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=13 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_0m1l4"]
 [ext_resource type="Texture2D" uid="uid://knxdj4w8lonl" path="res://assets/bgs/tub bg.png" id="1_rty5p"]
+[ext_resource type="Script" path="res://objects/sandbox.gd" id="1_wnofc"]
 [ext_resource type="PackedScene" uid="uid://5hhqv1ty5cr2" path="res://objects/player.tscn" id="2_164q8"]
 [ext_resource type="Texture2D" uid="uid://k0wwyxwqms78" path="res://assets/bgs/tile test 3.png" id="2_bdei4"]
 [ext_resource type="PackedScene" uid="uid://b4okuuwiv4502" path="res://spike.tscn" id="3_th80c"]
 [ext_resource type="Script" path="res://objects/tempwater.gd" id="4_qjm8g"]
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
-[ext_resource type="PackedScene" uid="uid://b7gmnc7a5ym6s" path="res://objects/hud.tscn" id="6_1r25a"]
+[ext_resource type="PackedScene" path="res://objects/hud.tscn" id="6_1r25a"]
 [ext_resource type="Texture2D" uid="uid://dipgf2jg7htrj" path="res://assets/bgs/tub fg.png" id="8_dx8lj"]
-[ext_resource type="Texture2D" uid="uid://b32o7i3lhilk8" path="res://assets/bgs/curtain.png" id="10_y60ba"]
+[ext_resource type="Texture2D" uid="uid://cnefcedpk6e4" path="res://assets/bgs/curtain.png" id="10_y60ba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
 
 [node name="sandbox" type="Node2D"]
+script = ExtResource("1_wnofc")
 
 [node name="box" type="Node2D" parent="."]
 position = Vector2(-523, -151)
@@ -122,3 +124,8 @@ position = Vector2(-824, 61)
 scale = Vector2(1.1283, 1.76025)
 texture = ExtResource("10_y60ba")
 flip_h = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
