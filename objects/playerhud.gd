@@ -36,6 +36,7 @@ func _on_timer_timeout():
 	else:
 		if diff < 0:
 			duckavatar.texture = ducks["hurt"]
+			$AudioStreamPlayer2D.pitch_scale = randf_range(0.8,1.2)
 			$AudioStreamPlayer2D.play()
 		else:
 			if diff > 0:
