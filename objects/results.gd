@@ -20,8 +20,8 @@ func _ready():
 	label.text = str("Player ", winner+1, " wins!")
 
 func _process(delta):
-	timer += delta
-	sprite_2d_2.frame += timer
+	timer += delta*3
+	sprite_2d_2.frame = int(timer)%2
 
 func enable_graph():
 	graph_visible = true

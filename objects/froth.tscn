@@ -194,4 +194,4 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 material = SubResource("ShaderMaterial_a0rd3")
 sprite_frames = SubResource("SpriteFrames_qolfn")
-frame_progress = 0.395572
+frame_progress = 0.220205
