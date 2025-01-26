@@ -1,11 +1,13 @@
 extends Node2D
 
+@onready var animation_player = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 @onready var bubble_scene = preload("res://objects/bubble.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	animation_player.play("curtainopen")
 	make_bubble(-100)
 	make_bubble(-300)
 	make_bubble(-500) # Replace with function body.
