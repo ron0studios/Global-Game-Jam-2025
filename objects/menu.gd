@@ -53,3 +53,32 @@ func _on_players_pressed():
 
 func _on_button_2_pressed():
 	get_tree().change_scene_to_file("res://objects/howtoplay.tscn")
+
+
+func _on_button_mouse_entered() -> void:
+	$CanvasLayer/Button.scale = Vector2.ONE*1.1
+	pass # Replace with function body.
+
+func _on_button_mouse_exited() -> void:
+	$CanvasLayer/Button.scale = Vector2.ONE
+	pass # Replace with function body.
+
+
+func _on_button_2_mouse_entered() -> void:
+	$CanvasLayer/Button2.scale = Vector2.ONE*0.8
+	pass # Replace with function body.
+
+
+func _on_button_2_mouse_exited() -> void:
+	$CanvasLayer/Button2.scale = Vector2.ONE*0.7
+	pass # Replace with function body.
+
+
+func _on_players_mouse_entered() -> void:
+	$CanvasLayer/Players.scale = Vector2.ONE*0.9
+	pass # Replace with function body.
+
+
+func _on_players_mouse_exited() -> void:
+	$CanvasLayer/Players.scale = Vector2.ONE*0.8
+	pass # Replace with function body.
