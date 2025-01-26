@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	if health <= 0:
+	if health < 0.1:
 		var deadbubble = preload("res://objects/deadbubble.tscn").instantiate()
 		deadbubble.position = position
 		deadbubble.play("default")
@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.speed_scale =1 
 		underwater = false
-		health += delta * 3
+		if health > 0.1 : health += delta * 3 # only for player bubbles
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
 	linear_velocity.clampf(-200, 200)
