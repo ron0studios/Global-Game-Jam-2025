@@ -5,6 +5,7 @@ extends ColorRect
 @onready var label = $Label
 var graph_visible = false
 var best = -1
+var timer = 0
 @onready var froth = preload("res://objects/froth.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +20,8 @@ func _ready():
 	label.text = str("Player ", winner+1, " wins!")
 
 func _process(delta):
-	sprite_2d_2.frame += delta
+	timer += delta
+	sprite_2d_2.frame += timer
 
 func enable_graph():
 	graph_visible = true
