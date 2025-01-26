@@ -2,10 +2,11 @@ extends Control
 
 @onready var duckavatar = preload("res://objects/duckavatar.tscn")
 @onready var grid_container = $GridContainer
+@onready var timer_timer = $TimerTimer
 
-var clock = 90
+var clock = 10
 var _scale = Vector2.ONE
-
+signal game_over
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Timer.text = seconds2hhmmss(clock)
@@ -30,6 +31,12 @@ func seconds2hhmmss(total_seconds: float) -> String:
 
 func _on_timer_timer_timeout() -> void:
 	clock -= 1
+	if clock <= 0:
+		timer_timer.stop()
+		emit_signal("game_over")
+		for i in grid_container.get_children():
+			Global.results[i.player_number-1] = int(i.label.text)
+		print(Global.results)
 	var tween = get_tree().create_tween()
 	$Timer.scale = _scale*1.1
 	tween.tween_property($Timer, "scale", _scale,0.1)
