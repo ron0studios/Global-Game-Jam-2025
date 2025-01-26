@@ -8,7 +8,7 @@ var num_of_players = 2
 	#timer += delta
 	#water_level = 300 + sin(timer)*100
 var player_colors = [
-	Color.WHITE,
+	Color.MOCCASIN,
 	Color.PALE_VIOLET_RED,
 	Color.CORNFLOWER_BLUE,
 	Color.PALE_GREEN
