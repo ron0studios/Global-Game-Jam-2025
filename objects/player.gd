@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var blow_sound = $BlowSound
 @onready var breathe_sound = $BreatheSound
 @onready var surface_sound = $SurfaceSound
-
+@onready var splash = preload("res://objects/splash.tscn")
 const ACCEL = 1000
 const DECEL = 300
 const MAX_SPD = 200
@@ -75,6 +75,10 @@ func _physics_process(delta: float) -> void:
 					velocity.y -= SHOOTUP_BUOYANCY * delta
 			else:
 				if !above_water:
+					var splash_inst = splash.instantiate()
+					splash_inst.position = Vector2(position.x, Global.water_level-5)
+					splash_inst.play("default")
+					get_parent().add_child(splash_inst)
 					surface_sound.play()
 				above_water = true
 				if -50 < velocity.y and velocity.y < 50:
