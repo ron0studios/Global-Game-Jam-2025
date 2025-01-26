@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqjga7q0d1pmr"]
+[gd_scene load_steps=16 format=3 uid="uid://bqjga7q0d1pmr"]
 
 [ext_resource type="Script" path="res://objects/menu.gd" id="1_lcpgb"]
 [ext_resource type="Texture2D" uid="uid://baa4t0ub5v3hq" path="res://assets/bgs/menu.png" id="2_0vi74"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://du406uro8phja" path="res://assets/howtoplaybubble.png" id="5_meenb"]
 [ext_resource type="Texture2D" uid="uid://cs4fymetwtfa3" path="res://assets/2players.png" id="5_qfdx6"]
 [ext_resource type="Texture2D" uid="uid://diqd8nat6ylnd" path="res://assets/logo.png" id="6_vi77d"]
+[ext_resource type="AudioStream" uid="uid://csout2wkjvx5v" path="res://audio/menu.mp3" id="7_5cjpl"]
 [ext_resource type="AudioStream" uid="uid://nthat44n43jc" path="res://audio/new_song.wav" id="10_8vnh7"]
 
 [sub_resource type="Animation" id="Animation_howtn"]
@@ -30,7 +31,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_wvbf3"]
 resource_name = "clickwobble"
 length = 0.2
-step = 0.05
+step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,6 +43,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(4, -2, 1),
 "update": 0,
 "values": [Vector2(0.5, 0.5), Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"stop"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mv8ge"]
@@ -113,6 +131,9 @@ expand_icon = true
 libraries = {
 "": SubResource("AnimationLibrary_mv8ge")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Players"]
+stream = ExtResource("7_5cjpl")
 
 [node name="Menu" type="Sprite2D" parent="."]
 visible = false
