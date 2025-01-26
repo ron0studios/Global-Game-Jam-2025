@@ -9,6 +9,7 @@ var start_pos
 func _process(delta: float) -> void:
 	progress += delta
 	if progress >= 1:
+		target_bubble.health += 20
 		queue_free()
 	print(target_bubble.position)
 	position = start_pos.lerp(target_bubble.position, movecurve.sample(progress))

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://xsot587obymf" path="res://assets/circle.png" id="2_gxtey"]
 
 [node name="playerbubble" instance=ExtResource("1_uri20")]
+mass = 0.5
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(0, 0)

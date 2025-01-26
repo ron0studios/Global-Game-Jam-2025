@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbberen3igh7"]
+[gd_scene load_steps=5 format=3 uid="uid://dbberen3igh7"]
 
 [ext_resource type="Texture2D" uid="uid://c4ta6n5uvmu1r" path="res://assets/spark.png" id="1_ofqdq"]
 [ext_resource type="Script" path="res://objects/spark.gd" id="2_me7ng"]
+[ext_resource type="Texture2D" uid="uid://bf4euibwidkjh" path="res://assets/light.png" id="3_a2yaq"]
 
 [sub_resource type="Curve" id="Curve_7v225"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.46642, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, -1.31169, 0, 0, Vector2(1, 1), 2.46642, 0.0, 0, 0]
 point_count = 2
 
 [node name="Spark" type="Sprite2D"]
 texture = ExtResource("1_ofqdq")
 script = ExtResource("2_me7ng")
 movecurve = SubResource("Curve_7v225")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
+texture = ExtResource("3_a2yaq")
