@@ -19,6 +19,7 @@ const DEPTH = 150
 var force = 0
 var breathingin = false
 var player_bubble #the player's bubble they need to look after, directly accessible here
+var above_water = false
 
 @export var player_number = 1
 @onready var left_input = "p%s_left" % player_number
@@ -63,6 +64,7 @@ func _physics_process(delta: float) -> void:
 				velocity.y = 0
 		states.JUMP:
 			if position.y > Global.water_level:
+				above_water = false
 				if velocity.y > 0:
 					velocity.y*=0.5
 					if velocity.y < 150:
@@ -72,6 +74,9 @@ func _physics_process(delta: float) -> void:
 				else:
 					velocity.y -= SHOOTUP_BUOYANCY * delta
 			else:
+				if !above_water:
+					surface_sound.play()
+				above_water = true
 				if -50 < velocity.y and velocity.y < 50:
 					velocity.y += GRAV/2 * delta
 				else:
