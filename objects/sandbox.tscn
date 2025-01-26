@@ -269,4 +269,5 @@ libraries = {
 "": SubResource("AnimationLibrary_f7ar7")
 }
 
+[connection signal="game_over" from="CanvasLayer/HUD" to="." method="game_over"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
