@@ -230,34 +230,41 @@ texture = ExtResource("8_dx8lj")
 layer = 2
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+process_mode = 3
 motion_scale = Vector2(1.725, 1.725)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+process_mode = 3
 position = Vector2(78, -311)
 scale = Vector2(0.681, 0.681)
 texture = ExtResource("10_onytl")
 
 [node name="Curtain" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+process_mode = 3
 position = Vector2(108, 56)
 scale = Vector2(1.13306, 1.76276)
 texture = ExtResource("10_y60ba")
 
 [node name="Curtain2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+process_mode = 3
 position = Vector2(-824, 61)
 scale = Vector2(1.1283, 1.76025)
 texture = ExtResource("10_y60ba")
 flip_h = true
 
 [node name="Bar" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+process_mode = 3
 position = Vector2(-276, -250)
 scale = Vector2(7.36, 4.04)
 texture = ExtResource("12_qulhb")
 
 [node name="Timer" type="Timer" parent="."]
+process_mode = 3
 wait_time = 0.5
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_f7ar7")
 }

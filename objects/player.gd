@@ -42,7 +42,6 @@ func _physics_process(delta: float) -> void:
 			player_bubble.get_node("AnimatedSprite2D/Sprite2D").modulate = modulate
 			get_parent().add_child(player_bubble)
 			player_bubble.position = position + Vector2(0, -300)
-			print(player_bubble.position)
 			player_bubble.show()
 	match state:
 		states.FLOAT:

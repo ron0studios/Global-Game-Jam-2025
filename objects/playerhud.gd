@@ -16,7 +16,6 @@ func _ready():
 	for i in get_tree().get_nodes_in_group("player"):
 		if i.player_number == player_number:
 			player = i
-	print(player, player_number)
 
 func _process(delta):
 	#modulate = player.modulate
