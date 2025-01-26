@@ -22,7 +22,7 @@ func _on_timer_timeout() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func make_bubble(start_y):
 	var bubble_inst = bubble_scene.instantiate()
-	bubble_inst.health = randi_range(1,15)
+	bubble_inst.health = randi_range(1,10)
 	bubble_inst.position.x = randi_range(-200,200)
 	bubble_inst.position.y = start_y
 	add_child(bubble_inst)

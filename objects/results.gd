@@ -47,8 +47,8 @@ func _draw():
 			else:
 				var l = Label.new()
 				l.text = str(Global.results[i - 1])
-				l.position.x = i*150 + 75
-				l.position.y = 900 + 30
+				l.position.x = i*150 + 75 - str(Global.results[i-1]).length() * 12
+				l.position.y = 900 + 30 
 				l.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 				l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				l.add_theme_font_override("font",load("res://fonts/Kenney Pixel.ttf"))
