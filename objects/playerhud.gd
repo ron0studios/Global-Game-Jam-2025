@@ -14,5 +14,5 @@ func _ready():
 
 func _process(delta):
 	#modulate = player.modulate
-	#label.text = str(player.player_bubble.health-50)
+	label.text = str(floor(player.player_bubble.health))#player_bubble.health-50)
 	pass

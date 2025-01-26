@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7gmnc7a5ym6s"]
+[gd_scene load_steps=5 format=3 uid="uid://b7gmnc7a5ym6s"]
 
 [ext_resource type="FontFile" uid="uid://bxxng5bgmayqv" path="res://fonts/Kenney Blocks.ttf" id="1_3q43k"]
 [ext_resource type="Script" path="res://objects/hud.gd" id="1_yn82r"]
 [ext_resource type="Texture2D" uid="uid://df8357di3yj4t" path="res://assets/tab.png" id="2_kue5u"]
-[ext_resource type="PackedScene" uid="uid://5tjqj3e1i46n" path="res://objects/duckavatar.tscn" id="5_0rbj7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pcl3d"]
 font_size = 64
@@ -59,8 +58,5 @@ autostart = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="ColorRect" parent="GridContainer" instance=ExtResource("5_0rbj7")]
-layout_mode = 2
 
 [connection signal="timeout" from="TimerTimer" to="." method="_on_timer_timer_timeout"]

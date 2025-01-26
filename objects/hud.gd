@@ -9,14 +9,15 @@ var _scale = Vector2.ONE
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Timer.text = seconds2hhmmss(clock)
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	for i in range(Global.num_of_players):
+		print(Global.num_of_players)
 		var avatarinst = duckavatar.instantiate()
 		avatarinst.player_number = i+1
+		avatarinst.modulate = Global.player_colors[i]
 		grid_container.add_child(avatarinst)
+
+
+	
 
 
 

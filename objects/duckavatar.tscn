@@ -6,11 +6,23 @@
 [ext_resource type="Script" path="res://objects/duckavatar.gd" id="6_uxo4i"]
 
 [node name="ColorRect" type="ColorRect"]
-custom_minimum_size = Vector2(100, 70)
+custom_minimum_size = Vector2(200, 140)
 offset_right = 99.0
 offset_bottom = 31.0
 color = Color(0, 0, 0, 0.301961)
 script = ExtResource("1_43lb1")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -50,7 +62,7 @@ autostart = true
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("3_q5xb5")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 96
 text = "10 "
 
 [connection signal="timeout" from="HBoxContainer/duckavatar/dbgtimer" to="HBoxContainer/duckavatar" method="_on_dbgtimer_timeout"]
