@@ -26,7 +26,6 @@ func _process(delta):
 func enable_graph():
 	graph_visible = true
 	queue_redraw()
-	print("H")
 	for i in range(1,(Global.num_of_players+1)):
 		var froth_inst = froth.instantiate()
 		froth_inst.position =Vector2((i+0.5)*150, 900 - (700*Global.results[i-1]/float(best)))

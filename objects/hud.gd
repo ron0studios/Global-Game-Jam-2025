@@ -11,7 +11,6 @@ signal game_over
 func _ready() -> void:
 	$Timer.text = seconds2hhmmss(clock)
 	for i in range(Global.num_of_players):
-		print(Global.num_of_players)
 		var avatarinst = duckavatar.instantiate()
 		avatarinst.player_number = i+1
 		avatarinst.modulate = Global.player_colors[i]
@@ -36,7 +35,6 @@ func _on_timer_timer_timeout() -> void:
 		emit_signal("game_over")
 		for i in grid_container.get_children():
 			Global.results[i.player_number-1] = int(i.label.text)
-		print(Global.results)
 	var tween = get_tree().create_tween()
 	$Timer.scale = _scale*1.1
 	tween.tween_property($Timer, "scale", _scale,0.1)
