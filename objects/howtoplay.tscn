@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwrk3q6qaqn7w"]
+[gd_scene load_steps=8 format=3 uid="uid://b85mlh6neeoyg"]
 
 [ext_resource type="FontFile" uid="uid://bxxng5bgmayqv" path="res://fonts/Kenney Blocks.ttf" id="1_3v0kp"]
 [ext_resource type="Script" path="res://objects/howtoplay.gd" id="1_5qdc1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bitao7yj32dng" path="res://assets/personalbubble.png" id="3_3y8xt"]
 [ext_resource type="Texture2D" uid="uid://bh74on6t1re1a" path="res://assets/blowdiagram.png" id="4_pbvgk"]
 [ext_resource type="Texture2D" uid="uid://bd1t5m4gjk57l" path="res://assets/divediagram.png" id="5_n8s7p"]
+[ext_resource type="AudioStream" uid="uid://nthat44n43jc" path="res://audio/new_song.wav" id="7_olhk0"]
 
 [node name="ColorRect" type="ColorRect"]
 anchors_preset = 15
@@ -113,5 +114,9 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_3v0kp")
 theme_override_font_sizes/font_size = 48
 text = "BACK"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_olhk0")
+autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
