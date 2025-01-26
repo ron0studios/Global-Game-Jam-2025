@@ -4,6 +4,11 @@ extends CharacterBody2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var breath_cooldown: Timer = $BreathCooldown
 
+@onready var wade_sound = $WadeSound
+@onready var blow_sound = $BlowSound
+@onready var breathe_sound = $BreatheSound
+@onready var surface_sound = $SurfaceSound
+
 const ACCEL = 1000
 const DECEL = 300
 const MAX_SPD = 200
@@ -14,6 +19,7 @@ const DEPTH = 150
 var force = 0
 var breathingin = false
 var player_bubble #the player's bubble they need to look after, directly accessible here
+var above_water = false
 
 @export var player_number = 1
 @onready var left_input = "p%s_left" % player_number
@@ -42,13 +48,15 @@ func _physics_process(delta: float) -> void:
 			player_bubble.get_node("AnimatedSprite2D/Sprite2D").modulate = modulate
 			get_parent().add_child(player_bubble)
 			player_bubble.position = position + Vector2(0, -300)
-			print(player_bubble.position)
 			player_bubble.show()
 	match state:
 		states.FLOAT:
 			position.y = Global.water_level
 			velocity.y = 0
 			check_descend()
+			if Input.get_axis(left_input, right_input) != 0 and !wade_sound.playing:
+				wade_sound.pitch_scale = randf_range(0.8, 1.2)
+				wade_sound.play()
 		states.DESCEND:
 			velocity.y = (Global.water_level+DEPTH-position.y)
 			if Input.is_action_just_released(jump_input):
@@ -56,6 +64,7 @@ func _physics_process(delta: float) -> void:
 				velocity.y = 0
 		states.JUMP:
 			if position.y > Global.water_level:
+				above_water = false
 				if velocity.y > 0:
 					velocity.y*=0.5
 					if velocity.y < 150:
@@ -65,6 +74,9 @@ func _physics_process(delta: float) -> void:
 				else:
 					velocity.y -= SHOOTUP_BUOYANCY * delta
 			else:
+				if !above_water:
+					surface_sound.play()
+				above_water = true
 				if -50 < velocity.y and velocity.y < 50:
 					velocity.y += GRAV/2 * delta
 				else:
@@ -137,6 +149,8 @@ func handle_blowing(delta):
 				animation.scale += Vector2.ONE*delta*0.5
 		else:
 			force = 0
+			breathe_sound.pitch_scale = randf_range(0.9, 1.1)
+			breathe_sound.play()
 			breathingin = true
 
 	if Input.is_action_just_released(blow_input) and breathingin:
@@ -151,6 +165,8 @@ func handle_blowing(delta):
 		blowparticle.position.y -= 10
 		get_parent().add_child(blowparticle)
 		blow_hbox.set_deferred("disabled", false)
+		blow_sound.pitch_scale = randf_range(0.9, 1.3)
+		blow_sound.play()
 		
 		if state == states.FLOAT:
 			velocity.y += force * 300

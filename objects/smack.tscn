@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://4etqs3ovyn8"]
+[gd_scene load_steps=7 format=3 uid="uid://4etqs3ovyn8"]
 
 [ext_resource type="Texture2D" uid="uid://dy6k7alf5qcy8" path="res://assets/smack.png" id="1_s8ni5"]
 [ext_resource type="Script" path="res://objects/smack.gd" id="2_vibvg"]
+[ext_resource type="AudioStream" uid="uid://bbsvbx3kkmtsq" path="res://audio/hit.mp3" id="3_dfj8t"]
 
 [sub_resource type="Animation" id="Animation_iywal"]
 length = 0.001
@@ -61,3 +62,7 @@ script = ExtResource("2_vibvg")
 libraries = {
 "": SubResource("AnimationLibrary_ohe2j")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dfj8t")
+autoplay = true

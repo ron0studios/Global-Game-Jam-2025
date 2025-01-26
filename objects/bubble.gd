@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 		get_parent().add_child(deadbubble)
 		queue_free()
 	if position.y > Global.water_level:
+		$AnimatedSprite2D.speed_scale = 5
 		if !underwater:
 			underwater = true
 			linear_velocity *= 0.7
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		health -= delta * 10
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
 	else:
+		$AnimatedSprite2D.speed_scale =1 
 		underwater = false
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
@@ -50,14 +52,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
-	if body.is_in_group("player") and body.position.y > position.y+20:
-		health -= 30
+	if body.is_in_group("player") and (body.velocity.y < 0 or body.global_position.y > global_position.y+20):
+		health -= 10
 		var smack_inst = smack.instantiate()
 		smack_inst.position = position + Vector2(0, 20*scale.y)
 		get_parent().add_child(smack_inst)
 		if health <= 0:
-			var spark = load("res://objects/spark.tscn").instantiate()
-			print(body.player_bubble)
+			var spark = preload("res://objects/spark.tscn").instantiate()
 			get_parent().add_child(spark)
 			spark.start_pos = position
 			spark.modulate = body.modulate

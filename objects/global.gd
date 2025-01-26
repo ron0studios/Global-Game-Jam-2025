@@ -13,3 +13,5 @@ var player_colors = [
 	Color.CORNFLOWER_BLUE,
 	Color.PALE_GREEN
 	]
+
+var results = [0, 0, 0, 0]
