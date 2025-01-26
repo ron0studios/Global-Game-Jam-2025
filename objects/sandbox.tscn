@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=17 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="Texture2D" uid="uid://knxdj4w8lonl" path="res://assets/bgs/tub bg.png" id="1_rty5p"]
 [ext_resource type="Script" path="res://objects/sandbox.gd" id="1_wnofc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dipgf2jg7htrj" path="res://assets/bgs/tub fg.png" id="8_dx8lj"]
 [ext_resource type="Texture2D" uid="uid://bqc3mqscqroi5" path="res://assets/duck.png" id="10_onytl"]
 [ext_resource type="Texture2D" uid="uid://cuqbkghxx78y3" path="res://assets/bgs/curtain.png" id="10_y60ba"]
+[ext_resource type="Texture2D" uid="uid://wr3ags5blkg3" path="res://assets/bgs/bar.png" id="12_qulhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -231,6 +232,11 @@ position = Vector2(-824, 61)
 scale = Vector2(1.1283, 1.76025)
 texture = ExtResource("10_y60ba")
 flip_h = true
+
+[node name="Bar" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+position = Vector2(-276, -250)
+scale = Vector2(7.36, 4.04)
+texture = ExtResource("12_qulhb")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
