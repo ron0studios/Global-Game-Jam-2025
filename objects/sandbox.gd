@@ -31,3 +31,6 @@ func game_over():
 	timer.stop()
 	animation_player.play_backwards("curtainopen")
 	get_tree().paused = true
+	await get_tree().create_timer(2).timeout
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://objects/results.tscn")
