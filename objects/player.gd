@@ -28,6 +28,8 @@ var state = states.FLOAT:
 enum states {JUMP, UNDERWATER, FLOAT, DESCEND, BLOWRECOIL}
 
 func _ready() -> void:
+	if player_number > Global.num_of_players:
+		queue_free()
 	animation.play("idle")
 	modulate = Global.player_colors[player_number-1]
 
