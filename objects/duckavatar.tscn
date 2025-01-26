@@ -1,67 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://5tjqj3e1i46n"]
+[gd_scene load_steps=5 format=3 uid="uid://5tjqj3e1i46n"]
 
-[ext_resource type="Texture2D" uid="uid://di1gw67ea4tew" path="res://assets/iconbase_angry.png" id="1_pnfy0"]
+[ext_resource type="Script" path="res://objects/playerhud.gd" id="1_43lb1"]
 [ext_resource type="Texture2D" uid="uid://inyo6nlab6l3" path="res://assets/iconbase.png" id="2_v2j7m"]
-[ext_resource type="Texture2D" uid="uid://vpcuesf8tck1" path="res://assets/iconbase_hurt.png" id="3_hbwhb"]
-[ext_resource type="Texture2D" uid="uid://ckgd3kyjbqm0w" path="res://assets/iconbase_happy.png" id="3_v7s4v"]
-[ext_resource type="Texture2D" uid="uid://mhmstx3wlu6a" path="res://assets/iconbase_sad.png" id="4_rvhdx"]
+[ext_resource type="FontFile" uid="uid://b175vce7mvsbe" path="res://fonts/Kenney Pixel.ttf" id="3_q5xb5"]
 [ext_resource type="Script" path="res://objects/duckavatar.gd" id="6_uxo4i"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_u7wv8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_pnfy0")
-}],
-"loop": true,
-"name": &"angry",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_v2j7m")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_v7s4v")
-}],
-"loop": true,
-"name": &"happy",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_hbwhb")
-}],
-"loop": true,
-"name": &"hurt",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_rvhdx")
-}],
-"loop": true,
-"name": &"sad",
-"speed": 5.0
-}]
+[node name="ColorRect" type="ColorRect"]
+custom_minimum_size = Vector2(100, 70)
+offset_right = 99.0
+offset_bottom = 31.0
+color = Color(0, 0, 0, 0.301961)
+script = ExtResource("1_43lb1")
 
-[node name="duckavatar" type="AnimatedSprite2D"]
-position = Vector2(3.8147e-06, -3.8147e-06)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_u7wv8")
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="duckavatar" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_v2j7m")
+expand_mode = 3
+stretch_mode = 5
 script = ExtResource("6_uxo4i")
 
-[node name="dbgtimer" type="Timer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/duckavatar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -7.0
+offset_right = 18.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.796257
+
+[node name="dbgtimer" type="Timer" parent="HBoxContainer/duckavatar"]
 wait_time = 3.0
 autostart = true
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("3_q5xb5")
+theme_override_font_sizes/font_size = 48
+text = "10 "
 
-[connection signal="timeout" from="dbgtimer" to="." method="_on_dbgtimer_timeout"]
+[connection signal="timeout" from="HBoxContainer/duckavatar/dbgtimer" to="HBoxContainer/duckavatar" method="_on_dbgtimer_timeout"]

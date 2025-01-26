@@ -1,5 +1,7 @@
 extends Control
 
+@onready var duckavatar = preload("res://objects/duckavatar.tscn")
+@onready var grid_container = $GridContainer
 
 var clock = 30
 var _scale = Vector2.ONE
@@ -11,7 +13,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	for i in range(Global.num_of_players):
+		var avatarinst = duckavatar.instantiate()
+		avatarinst.player_number = i+1
+		grid_container.add_child(avatarinst)
 
 
 

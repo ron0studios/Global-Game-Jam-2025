@@ -91,6 +91,7 @@ position = Vector2(-662, 300)
 polygon = PackedVector2Array(353, -130, 389, -16, 434, 100, 480, 122, 831, 124, 886, 98, 925, -25, 963, -130, 963, -1025, 1247, -666, 1192, 81, 1016, 274, 666, 279, 265, 221, 260, 12, 262, -1032, 314, -1260, 1112, -1173, 963, -1025, 353, -1025)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("6_1r25a")]
 
