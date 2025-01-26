@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=21 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="Texture2D" uid="uid://knxdj4w8lonl" path="res://assets/bgs/tub bg.png" id="1_rty5p"]
 [ext_resource type="Script" path="res://objects/sandbox.gd" id="1_wnofc"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cuqbkghxx78y3" path="res://assets/bgs/curtain.png" id="10_y60ba"]
 [ext_resource type="Texture2D" uid="uid://wr3ags5blkg3" path="res://assets/bgs/bar.png" id="12_qulhb"]
 [ext_resource type="AudioStream" uid="uid://i40g6vjxpy1a" path="res://audio/gameplay.ogg" id="15_wftkc"]
+[ext_resource type="AudioStream" uid="uid://kymg724ohwkx" path="res://audio/curtain.mp3" id="16_jol10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -80,7 +81,7 @@ tracks/0/path = NodePath("ParallaxBackground2/ParallaxLayer/Curtain:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.834003),
 "transitions": PackedFloat32Array(-4.59479, 1),
 "update": 0,
 "values": [Vector2(2.091, 1.763), Vector2(1.13306, 1.76276)]
@@ -92,7 +93,7 @@ tracks/1/path = NodePath("ParallaxBackground2/ParallaxLayer/Curtain2:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.834003),
 "transitions": PackedFloat32Array(-4.59479, 1),
 "update": 0,
 "values": [Vector2(2.09149, 1.76025), Vector2(1.1283, 1.76025)]
@@ -104,7 +105,7 @@ tracks/2/path = NodePath("ParallaxBackground2/ParallaxLayer/Curtain:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.834003),
 "transitions": PackedFloat32Array(-4.59479, 1),
 "update": 0,
 "values": [Vector2(-105.289, 56), Vector2(108, 56)]
@@ -116,7 +117,7 @@ tracks/3/path = NodePath("ParallaxBackground2/ParallaxLayer/Curtain2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.834003),
 "transitions": PackedFloat32Array(-4.59479, 1),
 "update": 0,
 "values": [Vector2(-610.711, 61), Vector2(-824, 61)]
@@ -270,9 +271,13 @@ libraries = {
 "": SubResource("AnimationLibrary_f7ar7")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_wftkc")
 pitch_scale = 0.9
+autoplay = true
+
+[node name="Curtain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_jol10")
 autoplay = true
 
 [connection signal="game_over" from="CanvasLayer/HUD" to="." method="game_over"]
