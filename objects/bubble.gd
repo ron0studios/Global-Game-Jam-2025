@@ -32,6 +32,8 @@ func _physics_process(delta: float) -> void:
 		if !underwater:
 			underwater = true
 			linear_velocity *= 0.7
+		if health < 45:
+			health = 0
 		health -= delta * 10
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
 	else:
