@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://5tjqj3e1i46n"]
+[gd_scene load_steps=6 format=3 uid="uid://5tjqj3e1i46n"]
 
 [ext_resource type="Script" path="res://objects/playerhud.gd" id="1_43lb1"]
 [ext_resource type="Texture2D" uid="uid://inyo6nlab6l3" path="res://assets/iconbase.png" id="2_v2j7m"]
 [ext_resource type="FontFile" uid="uid://b175vce7mvsbe" path="res://fonts/Kenney Pixel.ttf" id="3_q5xb5"]
+[ext_resource type="AudioStream" uid="uid://dmpnkv8mw74b4" path="res://audio/quack.mp3" id="5_mm1my"]
 [ext_resource type="Script" path="res://objects/duckavatar.gd" id="6_uxo4i"]
 
 [node name="ColorRect" type="ColorRect"]
@@ -66,8 +67,12 @@ text = "10 s0"
 horizontal_alignment = 2
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_mm1my")
+pitch_scale = 1.2
+max_polyphony = 4
 
 [connection signal="timeout" from="HBoxContainer/duckavatar/dbgtimer" to="HBoxContainer/duckavatar" method="_on_dbgtimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

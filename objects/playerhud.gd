@@ -26,6 +26,9 @@ func _process(delta):
 
 
 func _on_timer_timeout():
+	
+	var texture = duckavatar.texture
+	
 	var curr_value = player.player_bubble.health
 	var diff = curr_value - last_value
 	if diff < -20:
@@ -33,10 +36,16 @@ func _on_timer_timeout():
 	else:
 		if diff < 0:
 			duckavatar.texture = ducks["hurt"]
+			$AudioStreamPlayer2D.play()
 		else:
-			if diff > 20:
+			if diff > 0:
 				duckavatar.texture = ducks["happy"]
 			else:
 				duckavatar.texture = ducks["normal"]
-
+	
+	if texture != duckavatar.texture:
+		var trans = get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC)
+		var _scale = scale
+		trans.tween_property($HBoxContainer/duckavatar, "scale", _scale*1.3, 0.01)
+		trans.tween_property($HBoxContainer/duckavatar, "scale", _scale, 0.2)
 	last_value = curr_value
