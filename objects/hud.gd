@@ -3,7 +3,7 @@ extends Control
 @onready var duckavatar = preload("res://objects/duckavatar.tscn")
 @onready var grid_container = $GridContainer
 
-var clock = 30
+var clock = 90
 var _scale = Vector2.ONE
 
 # Called when the node enters the scene tree for the first time.

@@ -19,7 +19,7 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_top = -36.0
-offset_right = 26.0
+offset_right = 219.0
 offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -30,12 +30,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="duckavatar" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 texture = ExtResource("2_v2j7m")
 expand_mode = 3
 stretch_mode = 5
@@ -43,16 +45,12 @@ script = ExtResource("6_uxo4i")
 
 [node name="ColorRect" type="ColorRect" parent="HBoxContainer/duckavatar"]
 show_behind_parent = true
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -7.0
-offset_right = 18.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 41.0
+offset_top = -22.0
+offset_right = 181.0
+offset_bottom = 118.0
 rotation = 0.796257
 
 [node name="dbgtimer" type="Timer" parent="HBoxContainer/duckavatar"]
@@ -61,12 +59,14 @@ autostart = true
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("3_q5xb5")
 theme_override_font_sizes/font_size = 96
-text = "10 "
+text = "10 s0"
+horizontal_alignment = 2
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [connection signal="timeout" from="HBoxContainer/duckavatar/dbgtimer" to="HBoxContainer/duckavatar" method="_on_dbgtimer_timeout"]
