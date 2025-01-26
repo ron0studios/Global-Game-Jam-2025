@@ -5,11 +5,13 @@ var ducks = {
 	"normal" : preload("res://assets/iconbase.png"),
 	"happy" : preload("res://assets/iconbase_happy.png"),
 	"hurt" : preload("res://assets/iconbase_hurt.png"),
-	"sad" : preload("res://assets/iconbase_sad.png")
+	"sad" : preload("res://assets/iconbase_sad.png"),
+	"sleep": preload("res://assets/iconbase_sleep.png")
 }
 var last_value = 50
 var player_number
 var player
+var same = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,6 +47,16 @@ func _on_timer_timeout():
 				duckavatar.texture = ducks["normal"]
 	
 	if texture != duckavatar.texture:
+		same = 0
+		var trans = get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC)
+		var _scale = scale
+		trans.tween_property($HBoxContainer/duckavatar, "scale", _scale*1.3, 0.01)
+		trans.tween_property($HBoxContainer/duckavatar, "scale", _scale, 0.2)
+	else:
+		same += 1
+		
+	if same >= 8:
+		duckavatar.texture = ducks["sleep"]
 		var trans = get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC)
 		var _scale = scale
 		trans.tween_property($HBoxContainer/duckavatar, "scale", _scale*1.3, 0.01)
