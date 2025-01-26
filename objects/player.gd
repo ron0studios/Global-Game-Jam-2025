@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var wade_sound = $WadeSound
 @onready var blow_sound = $BlowSound
 @onready var breathe_sound = $BreatheSound
+@onready var surface_sound = $SurfaceSound
 
 const ACCEL = 1000
 const DECEL = 300
