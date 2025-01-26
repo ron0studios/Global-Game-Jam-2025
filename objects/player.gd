@@ -80,6 +80,7 @@ func _physics_process(delta: float) -> void:
 			if velocity.y <= 0:
 				state = states.JUMP
 				velocity.y = 0
+			check_descend()
 			
 	var direction := Input.get_axis(left_input, right_input)
 	if direction:
