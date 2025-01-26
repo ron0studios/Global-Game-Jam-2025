@@ -56,7 +56,7 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 		smack_inst.position = position + Vector2(0, 20*scale.y)
 		get_parent().add_child(smack_inst)
 		if health <= 0:
-			var spark = load("res://objects/spark.tscn").instantiate()
+			var spark = preload("res://objects/spark.tscn").instantiate()
 			get_parent().add_child(spark)
 			spark.start_pos = position
 			spark.modulate = body.modulate
