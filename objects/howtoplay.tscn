@@ -61,7 +61,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_yj5jj")
 theme_override_font_sizes/font_size = 72
-text = "Hold and let go SPACE/Q/U/... To blow!
+text = "Hold and let go SHIFT/Q/U/... To blow!
 "
 
 [node name="Label4" type="Label" parent="HBoxContainer"]
