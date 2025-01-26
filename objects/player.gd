@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var breath_cooldown: Timer = $BreathCooldown
 
+@onready var wade_sound = $WadeSound
+
 const ACCEL = 1000
 const DECEL = 300
 const MAX_SPD = 200
@@ -48,6 +50,9 @@ func _physics_process(delta: float) -> void:
 			position.y = Global.water_level
 			velocity.y = 0
 			check_descend()
+			if Input.get_axis(left_input, right_input) != 0 and !wade_sound.playing:
+				wade_sound.pitch_scale = randf_range(0.8, 1.2)
+				wade_sound.play()
 		states.DESCEND:
 			velocity.y = (Global.water_level+DEPTH-position.y)
 			if Input.is_action_just_released(jump_input):

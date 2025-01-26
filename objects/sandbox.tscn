@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://vs78q3v3ddl5"]
+[gd_scene load_steps=20 format=3 uid="uid://vs78q3v3ddl5"]
 
 [ext_resource type="Texture2D" uid="uid://knxdj4w8lonl" path="res://assets/bgs/tub bg.png" id="1_rty5p"]
 [ext_resource type="Script" path="res://objects/sandbox.gd" id="1_wnofc"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bqc3mqscqroi5" path="res://assets/duck.png" id="10_onytl"]
 [ext_resource type="Texture2D" uid="uid://cuqbkghxx78y3" path="res://assets/bgs/curtain.png" id="10_y60ba"]
 [ext_resource type="Texture2D" uid="uid://wr3ags5blkg3" path="res://assets/bgs/bar.png" id="12_qulhb"]
+[ext_resource type="AudioStream" uid="uid://i40g6vjxpy1a" path="res://audio/gameplay.ogg" id="15_wftkc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
@@ -268,6 +269,11 @@ process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_f7ar7")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_wftkc")
+pitch_scale = 0.9
+autoplay = true
 
 [connection signal="game_over" from="CanvasLayer/HUD" to="." method="game_over"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
