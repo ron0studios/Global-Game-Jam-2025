@@ -1,7 +1,13 @@
 extends ColorRect
+@onready var duckavatar = $HBoxContainer/duckavatar
 @onready var label = $HBoxContainer/Label
-
-
+var ducks = {
+	"normal" : preload("res://assets/iconbase.png"),
+	"happy" : preload("res://assets/iconbase_happy.png"),
+	"hurt" : preload("res://assets/iconbase_hurt.png"),
+	"sad" : preload("res://assets/iconbase_sad.png")
+}
+var last_value = 50
 var player_number
 var player
 
@@ -14,5 +20,22 @@ func _ready():
 
 func _process(delta):
 	#modulate = player.modulate
-	label.text = str(floor(player.player_bubble.health))#player_bubble.health-50)
+	label.text = str(floor(player.player_bubble.health)-50)#player_bubble.health-50)
 	pass
+
+
+func _on_timer_timeout():
+	var curr_value = player.player_bubble.health
+	var diff = curr_value - last_value
+	if diff < -50:
+		duckavatar.texture = ducks["sad"]
+	else:
+		if diff < 0:
+			duckavatar.texture = ducks["hurt"]
+		else:
+			if diff > 50:
+				duckavatar.texture = ducks["happy"]
+			else:
+				duckavatar.texture = ducks["normal"]
+
+	last_value = curr_value
