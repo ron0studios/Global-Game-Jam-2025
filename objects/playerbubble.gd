@@ -7,3 +7,4 @@ func _process(delta: float) -> void:
 		get_parent().linear_damp = 5
 	else:
 		get_parent().linear_damp = 2
+	

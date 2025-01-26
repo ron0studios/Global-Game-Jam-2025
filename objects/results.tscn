@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d7roim66idtv"]
+[gd_scene load_steps=9 format=3 uid="uid://d7roim66idtv"]
 
 [ext_resource type="Script" path="res://objects/results.gd" id="1_6p6pf"]
 [ext_resource type="Texture2D" uid="uid://bv1wup34spdsp" path="res://assets/spotlight.png" id="1_hivg4"]
 [ext_resource type="Texture2D" uid="uid://d00ghf50sesm4" path="res://assets/winner.png" id="2_4oi8s"]
 [ext_resource type="FontFile" uid="uid://b175vce7mvsbe" path="res://fonts/Kenney Pixel.ttf" id="4_34inm"]
+[ext_resource type="AudioStream" uid="uid://c125gb7q8qbak" path="res://audio/drumroll.ogg" id="5_s10hr"]
 
 [sub_resource type="Animation" id="Animation_snud5"]
 length = 0.001
@@ -175,3 +176,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s10hr")
+autoplay = true

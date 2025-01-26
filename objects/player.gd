@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var breath_cooldown: Timer = $BreathCooldown
 
 @onready var wade_sound = $WadeSound
+@onready var blow_sound = $BlowSound
 
 const ACCEL = 1000
 const DECEL = 300
@@ -155,6 +156,7 @@ func handle_blowing(delta):
 		blowparticle.position.y -= 10
 		get_parent().add_child(blowparticle)
 		blow_hbox.set_deferred("disabled", false)
+		blow_sound.play()
 		
 		if state == states.FLOAT:
 			velocity.y += force * 300

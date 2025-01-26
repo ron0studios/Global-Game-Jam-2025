@@ -16,6 +16,8 @@ func _ready():
 	for i in get_tree().get_nodes_in_group("player"):
 		if i.player_number == player_number:
 			player = i
+	if player == null:
+		queue_free()
 
 func _process(delta):
 	#modulate = player.modulate
