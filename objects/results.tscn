@@ -169,6 +169,7 @@ theme_override_font_sizes/font_size = 128
 text = "Player 1 wins!"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
