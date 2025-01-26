@@ -15,14 +15,13 @@ func _ready() -> void:
 	animated_sprite_2d.play("default")
 	health = health
 
-	
 
 
 
 	
 
 func _physics_process(delta: float) -> void:
-	if health < 0:
+	if health <= 0:
 		var deadbubble = preload("res://objects/deadbubble.tscn").instantiate()
 		deadbubble.position = position
 		deadbubble.play("default")
@@ -42,7 +41,6 @@ func _physics_process(delta: float) -> void:
 	rotation = 0
 	linear_velocity.clampf(-200, 200)
 	#print(animated_sprite_2d.material.shader)
-
 
 #func _on_body_entered(body: Node) -> void:
 	#
