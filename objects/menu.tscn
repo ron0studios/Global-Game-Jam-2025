@@ -1,61 +1,120 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqjga7q0d1pmr"]
+[gd_scene load_steps=13 format=3 uid="uid://bqjga7q0d1pmr"]
 
 [ext_resource type="Script" path="res://objects/menu.gd" id="1_lcpgb"]
 [ext_resource type="Texture2D" uid="uid://baa4t0ub5v3hq" path="res://assets/bgs/menu.png" id="2_0vi74"]
+[ext_resource type="Texture2D" uid="uid://k0wwyxwqms78" path="res://assets/bgs/tile test 3.png" id="2_5qmoo"]
+[ext_resource type="FontFile" uid="uid://b175vce7mvsbe" path="res://fonts/Kenney Pixel.ttf" id="3_28g3d"]
+[ext_resource type="Texture2D" uid="uid://mwplauuanuj" path="res://assets/playbutton.png" id="4_miglj"]
+[ext_resource type="Texture2D" uid="uid://t84i2sud22hi" path="res://assets/titletub.png" id="4_myaui"]
+[ext_resource type="Texture2D" uid="uid://ixfqmqao4wym" path="res://assets/titlebirds.png" id="5_j55yq"]
+[ext_resource type="Texture2D" uid="uid://cs4fymetwtfa3" path="res://assets/2players.png" id="5_qfdx6"]
+[ext_resource type="Texture2D" uid="uid://diqd8nat6ylnd" path="res://assets/logo.png" id="6_vi77d"]
 
-[node name="Menu" type="Node2D"]
+[sub_resource type="Animation" id="Animation_wvbf3"]
+resource_name = "clickwobble"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(4, -2, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_howtn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mv8ge"]
+_data = {
+"RESET": SubResource("Animation_howtn"),
+"clickwobble": SubResource("Animation_wvbf3")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_lcpgb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -275.0
+offset_top = -182.0
+offset_right = 2111.0
+offset_bottom = 1274.0
+texture = ExtResource("2_5qmoo")
+stretch_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 496.15
-offset_top = -74.975
-offset_right = 665.15
-offset_bottom = 183.025
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 50
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 1517.0
+offset_top = 411.0
+offset_right = 1872.0
+offset_bottom = 733.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_28g3d")
+theme_override_font_sizes/font_size = 128
+icon = ExtResource("4_miglj")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-text = "Wtf is the game name"
+[node name="Players" type="Button" parent="CanvasLayer"]
+offset_left = 1358.0
+offset_top = 696.0
+offset_right = 1713.0
+offset_bottom = 1018.0
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(180, 180)
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_28g3d")
+theme_override_font_sizes/font_size = 128
+icon = ExtResource("5_qfdx6")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-text = "       PLAY       "
-
-[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-text = "No. Of Players"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "-"
-
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "2"
-
-[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "+"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Players"]
+libraries = {
+"": SubResource("AnimationLibrary_mv8ge")
+}
 
 [node name="Menu" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(959, 545)
 scale = Vector2(7.5, 7.5)
 texture = ExtResource("2_0vi74")
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="button_up" from="CanvasLayer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_up"]
-[connection signal="button_up" from="CanvasLayer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_button_up"]
+[node name="Tub" type="Sprite2D" parent="."]
+position = Vector2(577, 610)
+scale = Vector2(10, 10)
+texture = ExtResource("4_myaui")
+
+[node name="birds" type="Sprite2D" parent="Tub"]
+texture = ExtResource("5_j55yq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1483, 204)
+scale = Vector2(7, 7)
+texture = ExtResource("6_vi77d")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Players" to="." method="_on_players_pressed"]
