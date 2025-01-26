@@ -72,6 +72,7 @@ offset_left = 1517.0
 offset_top = 411.0
 offset_right = 1872.0
 offset_bottom = 733.0
+pivot_offset = Vector2(180, 161)
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_28g3d")
 theme_override_font_sizes/font_size = 128
@@ -81,11 +82,12 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Button2" type="Button" parent="CanvasLayer"]
-offset_left = 1304.0
-offset_top = 537.0
-offset_right = 1659.0
-offset_bottom = 859.0
+offset_left = 1141.0
+offset_top = 333.0
+offset_right = 1496.0
+offset_bottom = 655.0
 scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(176, 161)
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_28g3d")
 theme_override_font_sizes/font_size = 128
