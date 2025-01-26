@@ -18,13 +18,19 @@ grow_vertical = 2
 script = ExtResource("1_yn82r")
 
 [node name="tab" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 784.0
-offset_top = -32.0
-offset_right = 1144.0
-offset_bottom = 328.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -341.0
+offset_top = -360.0
+offset_right = 341.0
+grow_horizontal = 2
+grow_vertical = 0
 texture = ExtResource("2_kue5u")
-flip_v = true
+stretch_mode = 6
 
 [node name="Timer" type="Label" parent="."]
 layout_mode = 1
@@ -33,10 +39,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -104.0
-offset_top = -1080.0
-offset_right = 128.0
-offset_bottom = -960.0
+offset_left = -116.0
+offset_top = -148.0
+offset_right = 116.0
+offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(116, 60)
