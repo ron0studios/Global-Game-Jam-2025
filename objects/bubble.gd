@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 		get_parent().add_child(deadbubble)
 		queue_free()
 	if position.y > Global.water_level:
+		$AnimatedSprite2D.speed_scale = 5
 		if !underwater:
 			underwater = true
 			linear_velocity *= 0.7
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		health -= delta * 10
 		apply_impulse(Vector2.UP * (position.y-Global.water_level) * 0.1)
 	else:
+		$AnimatedSprite2D.speed_scale =1 
 		underwater = false
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
