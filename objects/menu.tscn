@@ -29,4 +29,13 @@ text = "Wtf is the game name"
 layout_mode = 2
 text = "       PLAY       "
 
+[node name="HSlider" type="HSlider" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 4.0
+value = 1.0
+tick_count = 4
+ticks_on_borders = true
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]

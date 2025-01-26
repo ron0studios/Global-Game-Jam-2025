@@ -12,4 +12,11 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
+	print(Global.num_of_players)
 	get_tree().change_scene_to_file("res://objects/sandbox.tscn")
+
+
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	Global.num_of_players = value
