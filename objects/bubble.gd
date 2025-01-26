@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		underwater = false
 	$Label.text = str(health, scale, animated_sprite_2d.scale)
 	rotation = 0
-	linear_velocity.clampf(-1000, 1000)
+	linear_velocity.clampf(-200, 200)
 	
 	#print(animated_sprite_2d.material.shader)
 

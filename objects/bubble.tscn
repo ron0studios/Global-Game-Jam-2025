@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dsxltbqlx8y88" path="res://assets/bubble.png" id="2_vv6od"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_spq51"]
-bounce = 1.0
+bounce = 0.5
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_yhec5"]
 input_name = "time"
