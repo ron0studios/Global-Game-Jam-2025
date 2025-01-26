@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://puvjrcjss5ly"]
+[gd_scene load_steps=4 format=3 uid="uid://puvjrcjss5ly"]
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_uri20"]
 [ext_resource type="Script" path="res://objects/playerbubble.gd" id="1_xtskb"]
+[ext_resource type="Texture2D" uid="uid://bw2bwi6m7vm4" path="res://assets/circle.png" id="2_gxtey"]
 
 [node name="playerbubble" instance=ExtResource("1_uri20")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(0, 0)
+offset = Vector2(-4.215, 0.09)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D" index="0"]
+show_behind_parent = true
+texture = ExtResource("2_gxtey")
 
 [node name="Label2" type="Label" parent="." index="4"]
 offset_left = -81.0
