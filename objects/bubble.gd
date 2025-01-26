@@ -56,6 +56,12 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 	if body.is_in_group("player") and body.position.y > position.y+20:
 		health -= 30
 		if health <= 0:
-			body.player_bubble.position
+			var spark = load("res://objects/spark.tscn").instantiate()
+			print(body.player_bubble)
+			get_parent().add_child(spark)
+			spark.start_pos = position
+			spark.modulate = body.modulate
+			
+			spark.set_target(body.player_bubble)
 		linear_velocity.y = min(-300, linear_velocity.y)
 		

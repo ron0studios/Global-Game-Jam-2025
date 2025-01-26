@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://53cd60akj2u0" path="res://objects/bubble.tscn" id="1_uri20"]
 [ext_resource type="Script" path="res://objects/playerbubble.gd" id="1_xtskb"]
-[ext_resource type="Texture2D" uid="uid://dlysd8mb6h4yd" path="res://assets/circle.png" id="2_gxtey"]
+[ext_resource type="Texture2D" uid="uid://xsot587obymf" path="res://assets/circle.png" id="2_gxtey"]
 
 [node name="playerbubble" instance=ExtResource("1_uri20")]
 
