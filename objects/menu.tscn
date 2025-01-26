@@ -57,8 +57,9 @@ script = ExtResource("1_lcpgb")
 layout_mode = 0
 offset_left = -275.0
 offset_top = -182.0
-offset_right = 2111.0
-offset_bottom = 1274.0
+offset_right = 1016.0
+offset_bottom = 652.0
+scale = Vector2(2, 2)
 texture = ExtResource("2_5qmoo")
 stretch_mode = 1
 

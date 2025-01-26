@@ -15,8 +15,8 @@ var timer = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	timer += delta
-	tiles.position.x = wrap(tiles.position.x + 60*delta, -64, 0)
-	tiles.position.y = wrap(tiles.position.y - 60*delta, -64, 0)
+	tiles.position.x = wrap(tiles.position.x + 60*delta, -128, 0)
+	tiles.position.y = wrap(tiles.position.y - 60*delta, -128, 0)
 	tub.scale = Vector2.ONE * (7+sin(timer*2)*0.1)
 	tub.position = Vector2(577, 610) + Vector2(sin(timer*0.5), cos(timer*1))*Vector2(20, 9)
 	tub.rotation = sin(timer*0.5)*0.05
