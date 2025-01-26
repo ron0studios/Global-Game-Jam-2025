@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqjga7q0d1pmr"]
+[gd_scene load_steps=3 format=3 uid="uid://bqjga7q0d1pmr"]
 
 [ext_resource type="Script" path="res://objects/menu.gd" id="1_lcpgb"]
+[ext_resource type="Texture2D" uid="uid://baa4t0ub5v3hq" path="res://assets/bgs/menu.png" id="2_0vi74"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_lcpgb")
@@ -13,10 +14,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = 496.15
+offset_top = -74.975
+offset_right = 665.15
+offset_bottom = 183.025
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
@@ -49,6 +50,11 @@ text = "2"
 [node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "+"
+
+[node name="Menu" type="Sprite2D" parent="."]
+position = Vector2(959, 545)
+scale = Vector2(7.5, 7.5)
+texture = ExtResource("2_0vi74")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_up"]
