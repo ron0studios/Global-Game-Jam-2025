@@ -4,7 +4,7 @@ extends Control
 @onready var grid_container = $GridContainer
 @onready var timer_timer = $TimerTimer
 
-var clock = 90
+var clock = 2
 var _scale = Vector2.ONE
 signal game_over
 # Called when the node enters the scene tree for the first time.
