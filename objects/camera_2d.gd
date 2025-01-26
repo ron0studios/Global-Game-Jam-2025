@@ -4,6 +4,8 @@ extends Camera2D
 @export var targets : Array[NodePath]
 func _ready() -> void:
 	zoom = Vector2.ONE * 2
+	position.x = 0
+	position.y = Global.water_level - 20
 
 func _process(delta: float) -> void:
 	var avg_pos = Vector2.ZERO
@@ -20,7 +22,7 @@ func _process(delta: float) -> void:
 		avg_pos.y = -300
 	if avg_pos.y > Global.water_level - 20:
 		avg_pos.y = Global.water_level - 20 
-	position = position.lerp(avg_pos, 1 - pow(delta, 0.3))
+	position = position.lerp(avg_pos, 1 - pow(delta, 0.08))
 	#if max_dist > 500:
 		#max_dist = 500
 	#zoom = zoom.lerp(Vector2.ONE*700/max(min_dist, max_dist), 1 - pow(delta, 0.3))

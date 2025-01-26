@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://objects/camera_2d.gd" id="5_0cxf5"]
 [ext_resource type="PackedScene" path="res://objects/hud.tscn" id="6_1r25a"]
 [ext_resource type="Texture2D" uid="uid://dipgf2jg7htrj" path="res://assets/bgs/tub fg.png" id="8_dx8lj"]
-[ext_resource type="Texture2D" uid="uid://sdoxqmwh6p34" path="res://assets/bgs/curtain.png" id="10_y60ba"]
+[ext_resource type="Texture2D" uid="uid://bu27qnyob3u8m" path="res://assets/bgs/curtain.png" id="10_y60ba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2nrx"]
 size = Vector2(1173, 57)
