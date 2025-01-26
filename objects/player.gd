@@ -161,7 +161,7 @@ func handle_blowing(delta):
 
 func _on_blow_area_body_entered(body: RigidBody2D) -> void:
 	if body.is_in_group("bubble"):
-		body.apply_impulse(force*Vector2(2*(body.position.x-position.x),(-50000/max(10, abs(body.position.y-position.y)))))
+		body.apply_impulse(force*Vector2(2*(body.position.x-position.x),(-50000/max(80, abs(body.position.y-position.y)))))
 
 
 
