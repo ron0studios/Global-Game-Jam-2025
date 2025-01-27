@@ -53,5 +53,7 @@ func _draw():
 				l.add_theme_font_override("font",load("res://fonts/Kenney Pixel.ttf"))
 				l.add_theme_font_size_override("font_size",50)
 				add_child(l)
-			draw_rect(Rect2(Vector2(i*150, 900), Vector2(150, -700)), col.darkened(0.7))
-			draw_rect(Rect2(Vector2(i*150, 900), Vector2(150, -700*(Global.results[i-1]/float(best)))), col)
+			
+			if i <= Global.num_of_players:
+				draw_rect(Rect2(Vector2(i*150, 900), Vector2(150, -700)), col.darkened(0.7))
+				draw_rect(Rect2(Vector2(i*150, 900), Vector2(150, -700*(Global.results[i-1]/float(best)))), col)
