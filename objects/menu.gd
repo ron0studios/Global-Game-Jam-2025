@@ -14,6 +14,8 @@ extends Control
 
 var timer = 0
 
+func _ready():
+	players_icon.icon = player_icons[Global.num_of_players-1]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	timer += delta
