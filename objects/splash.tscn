@@ -90,6 +90,7 @@ animations = [{
 
 [node name="Splash" type="AnimatedSprite2D"]
 position = Vector2(1474, 365)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_iupba")
 frame = 10
 frame_progress = 1.0
